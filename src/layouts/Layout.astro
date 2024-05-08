@@ -1,0 +1,105 @@
+---
+import { SEOMetadata } from "astro-seo-metadata"
+import { getLangFromUrl, getTranslations } from "../i18n/utils"
+import Header from "../components/header/index.astro"
+import SectionDivider from "../components/divider/section-divider.astro"
+import type { Locales, ui } from "../i18n/ui"
+// import Footer from "../components/footer/index.astro"
+
+interface Props {
+  title: string
+  description: string
+  lang: Locales
+}
+
+const { title, description, lang } = Astro.props
+const { metadata } = getTranslations(lang)
+const url = Astro.site
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#005A9C" />
+		<SEOMetadata
+			siteName={metadata.title}
+			title={metadata.title}
+			description={metadata.description}
+			image={url + "header/opengraph-image.png"}
+			favicon={url + "favicon.ico"}
+			author="Shintaro Jokagi"
+			astroSitemap={true}
+			canonicalUrl={String(url)}
+			type="website"
+			astroGenerator={true}
+		/>
+		<title>{title}</title>
+	</head>
+	<body>
+    <Header lang={lang} />
+		<main><slot /></main>
+		<style is:global>
+			html {
+				scroll-behavior: smooth;
+        font-size: 100%;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+				* {
+					transition: none !important;
+					animation: none !important;
+				}
+			}
+
+			body {
+				color: var(--text-color);
+				background-color: var(--background);
+				font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans";
+				margin: 0;
+				min-height: 100svh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				text-wrap: balance;
+				word-wrap: break-word;
+				vertical-align: middle;
+			}
+
+			main {
+				max-width: min(64rem, 100%);
+				margin-inline: auto;
+				padding: var(--spaces-4) var(--spaces-4);
+				z-index: 0;
+				gap: var(--spaces-4);
+				display: flex;
+				flex-direction: column;
+				overflow-y: clip;
+			}
+		</style>
+	</body><style>
+		:root {
+			--light-background: hsl(210, 33%, 98%);
+			--light-text-color: hsl(0, 0%, 8%);
+
+			--dark-background: hsl(0, 0%, 8%);
+			--dark-text-color: hsl(0, 0%, 98%);
+
+			--background: var(--light-background);
+      --text-color: var(--light-text-color);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--background: var(--dark-background);
+        --text-color: var(--dark-text-color);
+			}
+		}
+	</style>
+</html>

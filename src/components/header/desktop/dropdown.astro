@@ -1,0 +1,15 @@
+---
+import type { Locales } from "../../../i18n/ui"
+import DropdownItem from "./dropdown-item.astro"
+const { lang } = Astro.props as { lang: Locales }
+
+const titles = [
+  { ja: "アプリ", en: "Apps" },
+  { ja: "ソーシャル", en: "Social" },
+  { ja: "ブログ", en: "Blog" },
+]
+---
+
+<div class="dropdown">
+  {titles.map((title) => <DropdownItem lang={lang} section={title.en} title={title[lang]} />)}
+</div>

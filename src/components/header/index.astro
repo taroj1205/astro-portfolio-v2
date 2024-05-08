@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets"
+import pfpImg from "../../assets/carousel/pfp.webp"
+import { getTranslations } from "../../i18n/utils"
+import SectionDivider from "../divider/section-divider.astro"
+import LangToggle from "./lang-toggle.astro"
+import Dropdown from "./desktop/dropdown.astro"
+import MobileMenu from "./mobile/index.astro"
+
+const { lang } = Astro.props
+
+const { header } = getTranslations(lang)
+---
+
+<header>
+	<nav>
+		<MobileMenu />
+    <Dropdown lang={lang} />
+		<LangToggle lang={lang} />
+	</nav>
+  <SectionDivider />
+</header>
+
+<style>
+	header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+    text-align: center;
+	}
+
+	nav {
+		display: grid;
+		grid-template-columns: 1fr 10fr 1fr;
+	}
+</style>

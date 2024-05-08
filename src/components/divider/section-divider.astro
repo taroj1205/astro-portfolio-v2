@@ -1,0 +1,28 @@
+<hr class="section-divider" />
+
+<style is:global>
+  :root {
+    --light-section-divider: hsl(220, 8%, 75%);
+    --dark-section-divider: hsl(220, 8%, 30%);
+
+    --section-divider: var(--light-section-divider);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --section-divider: var(--dark-section-divider);
+    }
+  }
+
+  .section-divider {
+    border: none;
+    padding: 1px 0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--section-divider),
+      transparent
+    );
+    margin: 0;
+  }
+</style>

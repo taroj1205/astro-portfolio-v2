@@ -1,0 +1,13 @@
+---
+const { lang, section, title } = Astro.props
+import CubesIcon from "../../../icons/cubes.astro"
+---
+
+<li class="dropdown__label">
+    <div>
+      <CubesIcon size="1em" />
+      {title}
+      <div class="dropdown__indicator"><div></div></div>
+    </div>
+    <!-- <DropdownContent lang={lang} section={section} /> -->
+  </li>
