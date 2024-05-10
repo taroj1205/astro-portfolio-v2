@@ -1,0 +1,54 @@
+---
+import SectionDivider from "../divider/section-divider.astro"
+import Dropdown from "./desktop/dropdown.astro"
+import LangToggle from "./lang-toggle.astro"
+import MobileMenu from "./mobile/index.astro"
+
+const { lang } = Astro.props
+---
+
+<header>
+	<nav>
+		<div></div>
+		<MobileMenu lang={lang} />
+    <Dropdown lang={lang} />
+		<LangToggle lang={lang} />
+	</nav>
+  <SectionDivider />
+</header>
+
+<style>
+	header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+    text-align: center;
+		z-index: 99;
+		container-type: inline-size;
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-between;
+		height: 3rem;
+		width: min(64rem, 100%);
+		margin-inline: auto;
+	}
+
+	div {
+		aspect-ratio: 1 / 1;
+    width: 1.5rem;
+		margin-right: 2rem;
+	}
+
+	@container (max-width: 530px) {
+		nav {
+			height: 4rem;
+		}
+		div {
+			display: none;
+		}
+	}
+</style>

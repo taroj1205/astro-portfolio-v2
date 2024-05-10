@@ -1,0 +1,163 @@
+---
+import { SEOMetadata } from "astro-seo-metadata"
+import Footer from "../components/footer/index.astro"
+import Header from "../components/header/index.astro"
+import type { Locales } from "../i18n/ui"
+import { getTranslations } from "../i18n/utils"
+
+interface Props {
+  title: string
+  description: string
+  lang: Locales
+}
+
+const { title, description, lang } = Astro.props
+const { metadata } = getTranslations(lang)
+const url = Astro.site
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#005A9C" />
+		<SEOMetadata
+			siteName={metadata.title}
+			title={metadata.title}
+			description={metadata.description}
+			image={url + "header/opengraph-image.png"}
+			favicon={url + "favicon.ico"}
+			author="Shintaro Jokagi"
+			astroSitemap={true}
+			canonicalUrl={String(url)}
+			type="website"
+			astroGenerator={true}
+		/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header lang={lang} />
+		<main><slot /></main>
+		<Footer lang={lang} />
+		<style is:global>
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+				* {
+					transition: none !important;
+					animation: none !important;
+				}
+			}
+
+			body:has(input#close-drawer[type="radio"]:checked) {
+				overflow: hidden;
+			}
+
+			p,
+			li,
+			strong {
+				font-size: 1.125rem;
+			}
+
+			p,
+			ul {
+				margin: 0.5rem 0;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4 {
+				margin: 0.5rem 0;
+			}
+
+			h2 {
+				font-size: 2.25rem;
+			}
+
+			h3 {
+				font-size: 1.75rem;
+			}
+
+			h4 {
+				font-size: 1.5rem;
+			}
+
+			.disc-list {
+				list-style-type: disc;
+				padding-left: 20px;
+				gap: 0.5rem;
+				display: flex;
+				flex-direction: column;
+			}
+		</style>
+		<style is:inline>
+			:root {
+				--background: hsl(210, 33%, 98%);
+				--text-color: hsl(0, 0%, 8%);
+				--gray-color: hsl(0, 0%, 20%);
+				--background-white: hsl(210, 33%, 98%);
+				--link-color: hsl(212, 100%, 40%);
+				--gray-color: hsl(0, 0%, 20%);
+				--black-color: hsl(210, 33%, 98%);
+				--line-color: hsl(0, 3%, 87%);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--background: hsl(0, 0%, 8%);
+					--text-color: hsl(0, 0%, 98%);
+					--gray-color: hsl(0, 0%, 60%);
+					--background-white: hsl(0, 0%, 8%);
+					--link-color: hsl(212, 100%, 60%);
+					--gray-color: hsl(0, 0%, 60%);
+					--black-color: hsl(200, 13%, 5%);
+					--line-color: hsl(0, 0%, 25%);
+				}
+			}
+
+			html {
+				scroll-behavior: smooth;
+				font-size: 100%;
+				color-scheme: light dark;
+			}
+
+			body {
+				color: var(--text-color);
+				background-color: var(--background);
+				font-family:
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe UI",
+					Roboto,
+					sans-serif;
+				margin: 0;
+				min-height: 100svh;
+				width: 100vw;
+				overflow-x: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				text-wrap: balance;
+				word-wrap: break-word;
+				vertical-align: middle;
+			}
+
+			main {
+				max-width: min(64rem, 100%);
+				margin-inline: auto;
+				padding: 1rem 1rem;
+				z-index: 0;
+				gap: 1rem;
+				display: flex;
+				flex-direction: column;
+				overflow-y: clip;
+			}
+		</style>
+	</body>
+</html>

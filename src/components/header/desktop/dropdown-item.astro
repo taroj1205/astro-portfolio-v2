@@ -1,0 +1,107 @@
+---
+import ChatIcon from "../../../icons/chat.astro"
+import Connect4Icon from "../../../icons/connect-4.astro"
+import FacebookIcon from "../../../icons/facebook.astro"
+import GitHubIcon from "../../../icons/github.astro"
+import HatenaIcon from "../../../icons/hatena.astro"
+import InstagramIcon from "../../../icons/instagram.astro"
+import KeyboardIcon from "../../../icons/keyboard.astro"
+import LinkedInIcon from "../../../icons/linkedin.astro"
+import NoteIcon from "../../../icons/note.astro"
+import SearchIcon from "../../../icons/search.astro"
+import TwitterIcon from "../../../icons/twitter.astro"
+import UniversityIcon from "../../../icons/university.astro"
+import YouTubeIcon from "../../../icons/youtube.astro"
+
+const { lang, items } = Astro.props
+---
+
+<a href={items.link} target="_blank" title={items.title[lang]}>
+	{
+		items.icon.component === "ChatIcon" ? (
+			<ChatIcon color={items.icon.props.color} />
+		) : items.icon.component === "Connect4Icon" ? (
+			<Connect4Icon color={items.icon.props.color} />
+		) : items.icon.component === "KeyboardIcon" ? (
+			<KeyboardIcon color={items.icon.props.color} />
+		) : items.icon.component === "SearchIcon" ? (
+			<SearchIcon color={items.icon.props.color} />
+		) : items.icon.component === "UniversityIcon" ? (
+			<UniversityIcon color={items.icon.props.color} />
+		) : items.icon.component === "TwitterIcon" ? (
+			<TwitterIcon color={items.icon.props.color} />
+		) : items.icon.component === "GitHubIcon" ? (
+			<GitHubIcon />
+		) : items.icon.component === "YouTubeIcon" ? (
+			<YouTubeIcon color={items.icon.props.color} />
+		) : items.icon.component === "LinkedInIcon" ? (
+			<LinkedInIcon color={items.icon.props.color} />
+		) : items.icon.component === "InstagramIcon" ? (
+			<InstagramIcon color={items.icon.props.color} />
+		) : items.icon.component === "FacebookIcon" ? (
+			<FacebookIcon color={items.icon.props.color} />
+		) : items.icon.component === "HatenaIcon" ? (
+			<HatenaIcon />
+		) : items.icon.component === "NoteIcon" ? (
+			<NoteIcon />
+		) : null
+	}
+	<span>{items.title[lang]}</span>
+</a>
+
+<style>
+	a {
+		text-decoration: none;
+		color: var(--text-color);
+		padding: 0.5rem;
+		text-align: left;
+		width: min(300px, 95%);
+		display: flex;
+    align-items: center;
+    gap: 0.5rem;
+		border-radius: 0.5rem;
+		transition: background-color 0.3s;
+		background-color: var(--overlay-button-background-color);
+    font-weight: 500;
+	}
+
+	a:hover {
+		background-color: var(--overlay-button-hover-color);
+	}
+
+	:root {
+		--light-overlay-button-background-color: hsl(30, 100%, 98%);
+		--dark-overlay-button-background-color: hsl(0, 0%, 8%);
+
+		--light-overlay-button-hover-color: hsl(210, 50%, 80%);
+		--dark-overlay-button-hover-color: hsl(210, 25%, 45%);
+
+		--light-overlay-button-text-color: hsl(210, 20%, 20%);
+		--dark-overlay-button-text-color: hsl(0, 0%, 98%);
+
+		--light-button-hover-background: hsl(300, 8.17%, 88.04%);
+		--dark-button-hover-background: hsl(0, 0%, 20%);
+
+		--overlay-button-background-color: var(
+			--light-overlay-button-background-color
+		);
+		--overlay-button-hover-color: var(--light-overlay-button-hover-color);
+		--overlay-button-text-color: var(--light-overlay-button-text-color);
+		--overlay-button-hover-background: var(
+			--light-overlay-button-hover-background
+		);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--overlay-button-background-color: var(
+				--dark-overlay-button-background-color
+			);
+			--overlay-button-hover-color: var(--dark-overlay-button-hover-color);
+			--overlay-button-text-color: var(--dark-overlay-button-text-color);
+			--overlay-button-hover-background: var(
+				--dark-overlay-button-hover-background
+			);
+		}
+	}
+</style>

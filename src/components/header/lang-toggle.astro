@@ -1,0 +1,44 @@
+---
+import JapanIcon from "../../icons/japan.astro"
+import NewZealandIcon from "../../icons/new-zealand.astro"
+const { lang } = Astro.props
+---
+
+<a
+  href={`/${lang === "ja" ? "en" : "ja"}`}
+  title={lang === "ja" ? "To English" : "日本語へ"}>
+  {
+    lang === "ja" ? (
+      <JapanIcon size="1.5rem" />
+    ) : (
+      <NewZealandIcon size="1.5rem" />
+    )
+  }</a
+>
+
+<style>
+  a {
+    display: flex;
+    padding: 0.5rem;
+    transition: background-color 0.3s;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    width: 1.5rem;
+    place-self: center;
+    margin-right: 2rem;
+  }
+
+  a:hover {
+    background-color: var(--button-hover-background);
+  }
+
+  a:focus {
+    outline: rgba(191, 219, 254, 0.5) solid 3px;
+  }
+
+  @container (max-width: 530px) {
+    a {
+      margin-right: 0.5rem;
+    }
+  }
+</style>

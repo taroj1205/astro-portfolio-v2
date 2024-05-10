@@ -1,0 +1,183 @@
+---
+import type { Locales } from "../../../i18n/ui"
+import BlogIcon from "../../../icons/blog.astro"
+import CubesIcon from "../../../icons/cubes.astro"
+import DropboxIcon from "../../../icons/dropbox.astro"
+import DropdownContent from "./dropdown-content.astro"
+import { titles } from "./items"
+const { lang } = Astro.props as { lang: Locales }
+---
+
+<form class="desktop-dropdown">
+	{
+		titles.map((title) => (
+			<>
+				<input type="radio" id={title[lang].toLowerCase()} name="dropdown" />
+				<label for={title[lang].toLowerCase()}>
+					{title["en"] === "Blog" ? (
+						<BlogIcon size="1em" />
+					) : title["en"] === "Apps" ? (
+						<CubesIcon size="1em" />
+					) : (
+						<DropboxIcon size="1em" />
+					)}
+					{title[lang]}
+					<div class="dropdown__indicator">
+						<div />
+					</div>
+				</label>
+				<div class="dropdown__content">
+					<DropdownContent lang={lang} section={title.en.toLowerCase()} />
+				</div>
+			</>
+		))
+	}
+  <input type="radio" id="close" class="dropdown__close" name="dropdown" checked />
+  <label for="close">
+  </label>
+</form>
+
+<style>
+	.desktop-dropdown {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+    place-self: center;
+		font-size: 1.125rem;
+	}
+
+	@container (max-width: 530px) {
+		.desktop-dropdown {
+			display: none;
+		}
+	}
+
+	label {
+		place-items: center;
+		display: grid;
+		z-index: 99;
+	}
+
+	input {
+		display: none;
+	}
+
+	input[type="radio"]:checked + label + .dropdown__content {
+		display: flex;
+	}
+
+	label {
+		display: grid;
+		place-items: center;
+		grid-template-columns: auto 1fr auto;
+		transition: background-color 0.3s ease-in-out;
+	}
+
+	label:not([for="close"]) {
+		cursor: pointer;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		place-self: center;
+	}
+
+	label:not([for="close"]):hover {
+		background-color: var(--button-hover-background);
+	}
+
+	label svg {
+		margin-right: 0.5em;
+	}
+
+	.dropdown__content {
+		display: none;
+    position: absolute;
+    top: 3rem;
+    background-color: var(--overlay-background-color);
+		border-radius: 0.5rem;
+    width: min(300px, 100%);
+		left: 0;
+		right: 0;
+		margin-inline: auto;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+		z-index: 99;
+		align-items: start;
+		flex-direction: column;
+		gap: 0.5em;
+		padding: 0.5em;
+	}
+
+  #close:not(input[type="radio"]:checked) + label {
+    display: flex;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 98;
+    height: 100svh;
+    width: 100%;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+		background-color: rgba(0, 0, 0, 0.5);
+  }
+
+	
+  .dropdown__indicator {
+    display: grid;
+    place-items: center;
+    margin-top: 1px;
+		margin-left: 0.3rem;
+  }
+
+  .dropdown__indicator div {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    transform: rotate(90deg) scale(0.7);
+  }
+
+  .dropdown__indicator div::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-3px) rotate(45deg);
+  }
+  .dropdown__indicator div::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(3px) rotate(-45deg);
+  }
+
+  input[type="radio"]:checked + label .dropdown__indicator div::before {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  input[type="radio"]:checked + label .dropdown__indicator div::after {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+	:root {
+		--light-button-hover-background: hsl(300, 8.17%, 88.04%);
+		--dark-button-hover-background: hsl(0, 0%, 20%);
+
+		--light-overlay-background-color: rgba(255, 255, 255, 0.9);
+		--dark-overlay-background-color: hsla(0, 0%, 0%, 0.9);
+		
+		--button-hover-background: var(--light-button-hover-background);
+    --overlay-background-color: var(--light-overlay-background-color);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--button-hover-background: var(--dark-button-hover-background);
+			--overlay-background-color: var(--dark-overlay-background-color);
+		}
+	}
+</style>
