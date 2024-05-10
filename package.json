@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "ts-node ./generate-css.mjs && astro dev",
+    "start": "astro preview",
+    "build": "ts-node ./generate-css.mjs && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -13,8 +13,12 @@
     "@astrojs/check": "^0.6.0",
     "@astrojs/sitemap": "^3.1.4",
     "astro": "^4.7.1",
-    "astro-seo-metadata": "^0.6.0",
+    "astro-seo-metadata": "^0.6.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "sharp": "^0.33.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }

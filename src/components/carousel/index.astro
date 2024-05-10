@@ -1,0 +1,71 @@
+---
+import jugglingImg from "../../assets/carousel/juggling.webp"
+import pfpImg from "../../assets/carousel/pfp.webp"
+import profileImg from "../../assets/carousel/profile.webp"
+import westlakeImg from "../../assets/carousel/westlake_me.webp"
+import LeftArrow from "../../icons/left-arrow.astro"
+import RightArrow from "../../icons/right-arrow.astro"
+import CarouselItem from "./carousel-item.astro"
+
+const carouselItems = [
+  {
+    id: "target-item-1",
+    item: "item-1",
+    imgSrc: jugglingImg,
+    alt: "Me juggling",
+    carousel: 1,
+    prevId: "target-item-4",
+    nextId: "target-item-2",
+    checked: true,
+  },
+  {
+    id: "target-item-2",
+    item: "item-2",
+    imgSrc: profileImg,
+    alt: "Me with Kendama",
+    carousel: 2,
+    prevId: "target-item-1",
+    nextId: "target-item-3",
+  },
+  {
+    id: "target-item-3",
+    item: "item-3",
+    imgSrc: pfpImg,
+    alt: "My profile picture",
+    carousel: 3,
+    prevId: "target-item-2",
+    nextId: "target-item-4",
+  },
+  {
+    id: "target-item-4",
+    item: "item-4",
+    imgSrc: westlakeImg,
+    alt: "Westlake Boys High School",
+    carousel: 4,
+    prevId: "target-item-3",
+    nextId: "target-item-1",
+  },
+]
+---
+
+<div id="carousel">
+  <form class="carousel-wrapper">
+    {
+      carouselItems.map((item) => (
+        <CarouselItem {...item}>
+          <LeftArrow slot="prevArrow" />
+          <RightArrow slot="nextArrow" />
+        </CarouselItem>
+      ))
+    }
+  </form>
+</div>
+
+<style is:global>
+  #carousel {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+</style>
