@@ -4,8 +4,4 @@ import { items } from "./items"
 const { lang, section } = Astro.props
 ---
 
-{
-	items[section].map((item) => (
-		<DropdownItem lang={lang} items={item} />
-	))
-}
+{items[section].map((item) => <DropdownItem lang={lang} items={item} />)}

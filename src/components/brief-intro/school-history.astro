@@ -26,9 +26,11 @@ const { education } = getTranslations(lang)
       {
         education.schools.map((school, index) => (
           <tr
-            class={`table-row ${index % 2 === 0 ? "table-row--even" : "table-row--odd"}`}>
+            class={`table-row ${index % 2 === 0 ? "table-row--even" : "table-row--odd"}`}
+          >
             <td
-              class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-left" : ""}`}>
+              class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-left" : ""}`}
+            >
               <Tooltip
                 text={school.duration}
                 tooltip={`${school.start} - ${school.end}`}
@@ -39,7 +41,8 @@ const { education } = getTranslations(lang)
               <Tooltip text={school.name} tooltip={school.grade} />
             </td>
             <td
-              class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-right" : ""}`}>
+              class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-right" : ""}`}
+            >
               <Tooltip
                 text={school.location.country}
                 tooltip={school.location.region}
