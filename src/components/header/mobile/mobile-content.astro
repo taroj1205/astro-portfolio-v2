@@ -1,8 +1,8 @@
 ---
-import type { Locales } from "../../../i18n/ui";
-import DropdownItem from "./../desktop/dropdown-item.astro";
-import { items, titles } from "./../desktop/items";
-const { lang } = Astro.props;
+import type { Locales } from "../../../i18n/ui"
+import DropdownItem from "./../desktop/dropdown-item.astro"
+import { items, titles } from "./../desktop/items"
+const { lang } = Astro.props
 ---
 
 <div class="mobile-content">
@@ -21,6 +21,16 @@ const { lang } = Astro.props;
 </div>
 
 <style>
+	:root {
+		--overlay-background-color: hsla(0, 0%, 100%, 0.9);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--overlay-background-color: hsla(0, 0%, 0%, 0.9);
+		}
+	}
+
 	.mobile-content {
 		display: flex;
 		flex-direction: column;
@@ -30,7 +40,7 @@ const { lang } = Astro.props;
 
 		backdrop-filter: blur(15px);
 		-webkit-backdrop-filter: blur(15px);
-		background-color: hsla(0, 0%, 0%, 0.9);
+		background-color: var(--overlay-background-color);
 
 		width: calc(100% - 40px);
 		padding-inline: 20px;

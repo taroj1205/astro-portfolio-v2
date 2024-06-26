@@ -1,19 +1,19 @@
 ---
-import { SEOMetadata } from "astro-seo-metadata";
-import Footer from "../components/footer/index.astro";
-import Header from "../components/header/index.astro";
-import type { Locales } from "../i18n/ui";
-import { getTranslations } from "../i18n/utils";
+import { SEOMetadata } from "astro-seo-metadata"
+import Footer from "../components/footer/index.astro"
+import Header from "../components/header/index.astro"
+import type { Locales } from "../i18n/ui"
+import { getTranslations } from "../i18n/utils"
 
 interface Props {
-	title: string;
-	description: string;
-	lang: Locales;
+  title: string
+  description: string
+  lang: Locales
 }
 
-const { title, description, lang } = Astro.props;
-const { metadata } = getTranslations(lang);
-const url = Astro.site;
+const { title, description, lang } = Astro.props
+const { metadata } = getTranslations(lang)
+const url = Astro.site
 ---
 
 <!doctype html>
@@ -51,12 +51,6 @@ const url = Astro.site;
 					transition: none !important;
 					animation: none !important;
 				}
-			}
-
-			body:has(input.overlay-toggle[type="radio"]:checked) {
-				position: fixed;
-				width: 100%;
-				overflow-y: scroll;
 			}
 
 			p,

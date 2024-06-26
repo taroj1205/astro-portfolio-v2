@@ -55,7 +55,6 @@ const { lang } = Astro.props as { lang: Locales }
 		place-items: center;
 		display: grid;
 		z-index: 99;
-		background-color: var(--background-white); 
 	}
 
 	input {
@@ -64,6 +63,10 @@ const { lang } = Astro.props as { lang: Locales }
 
 	input[type="radio"]:checked + label {
 		background-color: var(--button-hover-background);
+	}
+
+	.desktop-dropdown:has(input[type="radio"]#close:not(:checked)) input[type="radio"]:not(:checked) + label:not([for="close"]) {  
+		background-color: var(--background-white);
 	}
 
 	input[type="radio"]:checked + label + .dropdown__content {
