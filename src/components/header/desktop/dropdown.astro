@@ -134,7 +134,8 @@ const { lang } = Astro.props as { lang: Locales }
     transform: rotate(90deg) scale(0.7);
   }
 
-  .dropdown__indicator div::before {
+  .dropdown__indicator div::before,
+	.dropdown__indicator div::after {
     content: "";
     position: absolute;
     right: 0;
@@ -145,13 +146,6 @@ const { lang } = Astro.props as { lang: Locales }
     transform: translateY(-3px) rotate(45deg);
   }
   .dropdown__indicator div::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    width: 10px;
-    height: 2px;
-    background-color: var(--text-color);
-    transition: transform 0.3s ease-in-out;
     transform: translateY(3px) rotate(-45deg);
   }
 
