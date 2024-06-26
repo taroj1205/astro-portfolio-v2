@@ -1,7 +1,7 @@
 ---
-import MobileContent from "./mobile-content.astro";
+import MobileContent from "./mobile-content.astro"
 
-const { lang } = Astro.props;
+const { lang } = Astro.props
 ---
 
 <form id="mobile-toggle">
@@ -23,6 +23,7 @@ const { lang } = Astro.props;
 </form>
 
 <style>
+
 	#mobile-toggle {
 		z-index: calc(var(--overlay-z-index) + 1);
 	}
@@ -42,15 +43,11 @@ const { lang } = Astro.props;
 	}
 
 	#click-to-close div {
-		background-color: hsl(210, 33%, 98%);
-	}
-
-	#click-to-close:hover {
-		background-color: hsl(0, 0%, 15%);
+		background-color: var(--gray-color);
 	}
 
 	#click-to-close label div {
-		background-color: hsl(210, 33%, 98%);
+		background-color: var(--gray-color);
 	}
 
 	#click-to-close div:first-child,
