@@ -53,8 +53,10 @@ const url = Astro.site;
 				}
 			}
 
-			body:has(input#close-drawer[type="radio"]:checked) {
-				overflow: hidden;
+			body:has(input.overlay-toggle[type="radio"]:checked) {
+				position: fixed;
+				width: 100%;
+				overflow-y: scroll;
 			}
 
 			p,
@@ -96,6 +98,12 @@ const url = Astro.site;
 			}
 		</style>
 		<style is:global>
+			html {
+				scroll-behavior: smooth;
+				font-size: 100%;
+				color-scheme: light;
+			}
+
 			:root {
 				--background: hsl(210, 33%, 98%);
 				--text-color: hsl(0, 0%, 8%);
@@ -122,12 +130,6 @@ const url = Astro.site;
 				html {
 					color-scheme: dark;
 				}
-			}
-
-			html {
-				scroll-behavior: smooth;
-				font-size: 100%;
-				color-scheme: light;
 			}
 
 			body {

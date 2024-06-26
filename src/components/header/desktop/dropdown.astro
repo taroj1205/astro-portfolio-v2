@@ -12,7 +12,7 @@ const { lang } = Astro.props as { lang: Locales }
 	{
 		titles.map((title) => (
 			<>
-				<input type="radio" id={title[lang].toLowerCase()} name="dropdown" />
+				<input type="radio" id={title[lang].toLowerCase()} name="dropdown" class="overlay-toggle" />
 				<label for={title[lang].toLowerCase()}>
 					{title["en"] === "Blog" ? (
 						<BlogIcon size="1em" />
@@ -55,10 +55,15 @@ const { lang } = Astro.props as { lang: Locales }
 		place-items: center;
 		display: grid;
 		z-index: 99;
+		background-color: var(--background-white); 
 	}
 
 	input {
 		display: none;
+	}
+
+	input[type="radio"]:checked + label {
+		background-color: var(--button-hover-background);
 	}
 
 	input[type="radio"]:checked + label + .dropdown__content {
@@ -69,7 +74,7 @@ const { lang } = Astro.props as { lang: Locales }
 		display: grid;
 		place-items: center;
 		grid-template-columns: auto 1fr auto;
-		transition: background-color 0.3s ease-in-out;
+		transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 	}
 
 	label:not([for="close"]) {
@@ -106,6 +111,13 @@ const { lang } = Astro.props as { lang: Locales }
 		padding: 0.5em;
 	}
 
+	#close + label {
+		opacity: 0;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
   #close:not(input[type="radio"]:checked) + label {
     display: flex;
     top: 0;
@@ -114,9 +126,7 @@ const { lang } = Astro.props as { lang: Locales }
     z-index: 98;
     height: 100svh;
     width: 100%;
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-		background-color: rgba(0, 0, 0, 0.5);
+		opacity: 1;
   }
 
 	
