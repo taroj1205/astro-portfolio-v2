@@ -23,10 +23,10 @@ const { footer } = getTranslations(lang)
       )
     }{footer.lang}</a
   >
-  <a href="#" class="scroll scroll-text" title={footer.scrollToTop}
+  <a href="" class="scroll scroll-text" title={footer.scrollToTop}
     >{footer.scrollToTop}</a
   >
-  <a href="#" class="scroll arrow-up" title={footer.scrollToTop}
+  <a href="" class="scroll arrow-up" title={footer.scrollToTop}
     ><ArrowUpIcon /></a
   >
   <Socials />
@@ -80,6 +80,12 @@ const { footer } = getTranslations(lang)
     .scroll-text {
       display: none;
     }
+  }
+
+  body:has(.scroll:active) {
+    position: fixed;
+    width: 100%;
+    overflow-y: scroll;
   }
 </style>
 
