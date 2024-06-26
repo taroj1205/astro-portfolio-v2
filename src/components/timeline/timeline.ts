@@ -1,8 +1,8 @@
 import type { ImageMetadata } from "astro"
 import nzFlight from "../../assets/timeline/auckland/auckland_flight.webp"
+import injury from "../../assets/timeline/auckland/injury.webp"
 import cebuVisit from "../../assets/timeline/cebu/cebu_visit.webp"
 import microsoft_visit from "../../assets/timeline/microsoft/microsoft_visit.webp"
-import injury from "../../assets/timeline/auckland/injury.webp"
 
 export const timelineJSON: timelineJSONProps = [
   {

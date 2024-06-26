@@ -1,15 +1,15 @@
 ---
-import { marked } from "marked";
-import Container from "./container.astro";
-import { timelineJSON } from "./timeline";
-import { Image } from "astro:assets";
-import { generateSizesAndWidths } from "../../utils/image";
+import { Image } from "astro:assets"
+import { marked } from "marked"
+import { generateSizesAndWidths } from "../../utils/image"
+import Container from "./container.astro"
+import { timelineJSON } from "./timeline"
 
-const { lang } = Astro.props as { lang: "en" | "ja" };
+const { lang } = Astro.props as { lang: "en" | "ja" }
 
 timelineJSON.sort(
-	(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-);
+  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+)
 ---
 
 <h2>{lang === "ja" ? "僕の旅" : "My Journey"}</h2>
