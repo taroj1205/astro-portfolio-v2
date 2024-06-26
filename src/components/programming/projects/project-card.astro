@@ -9,7 +9,8 @@ const lang = project.lang.join(" / ")
 ---
 
 <div
-  class={`project-card ${project.framework.join(" ").toLowerCase().replace(/\./g, "")} ${project.lang.join(" ").toLowerCase().replace(/\./g, "").replace(/#/g, "s")}`}>
+  class={`project-card ${project.framework.join(" ").toLowerCase().replace(/\./g, "")} ${project.lang.join(" ").toLowerCase().replace(/\./g, "").replace(/#/g, "s")}`}
+>
   <div>
     <Image
       src={project.thumbnail}
@@ -37,7 +38,8 @@ const lang = project.lang.join(" / ")
       href={project.githubLink}
       target="_blank"
       rel="noopener noreferrer"
-      title="GitHub">
+      title="GitHub"
+    >
       <GithubIcon size="100%" />
     </a>
   </div>

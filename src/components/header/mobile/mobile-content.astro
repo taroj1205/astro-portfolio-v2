@@ -6,73 +6,73 @@ const { lang } = Astro.props
 ---
 
 <div class="mobile-content">
-	{
-		titles.map((title) => (
-			<section>
-				<h2>{title[lang as Locales]}</h2>
-				<div class="social-icons">
-					{items[title.en.toLowerCase()].map((item) => (
-						<DropdownItem lang={lang} items={item} />
-					))}
-				</div>
-			</section>
-		))
-	}
+  {
+    titles.map((title) => (
+      <section>
+        <h2>{title[lang as Locales]}</h2>
+        <div class="social-icons">
+          {items[title.en.toLowerCase()].map((item) => (
+            <DropdownItem lang={lang} items={item} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
 </div>
 
 <style>
-	:root {
-		--overlay-background-color: hsla(0, 0%, 100%, 0.9);
-	}
+  :root {
+    --overlay-background-color: hsla(0, 0%, 100%, 0.9);
+  }
 
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--overlay-background-color: hsla(0, 0%, 0%, 0.9);
-		}
-	}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --overlay-background-color: hsla(0, 0%, 0%, 0.9);
+    }
+  }
 
-	.mobile-content {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		overflow-y: auto;
-		height: 100%;
+  .mobile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    height: 100%;
 
-		backdrop-filter: blur(15px);
-		-webkit-backdrop-filter: blur(15px);
-		background-color: var(--overlay-background-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: var(--overlay-background-color);
 
-		width: calc(100% - 40px);
-		padding-inline: 20px;
-		padding-block: 3rem;
-	}
+    width: calc(100% - 40px);
+    padding-inline: 20px;
+    padding-block: 3rem;
+  }
 
-	h2 {
-		font-size: 24px;
-		margin-bottom: 10px;
-		color: var(--dark-text-color);
-		text-align: left;
-	}
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--dark-text-color);
+    text-align: left;
+  }
 
-	.social-icons {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-	.social-icons a svg {
-		width: 24px;
+  .social-icons a svg {
+    width: 24px;
 
-		height: auto;
-	}
+    height: auto;
+  }
 </style>
 
 <style is:global>
-	.mobile-content a {
-		font-size: 1.125rem;
-		padding: 10px;
-		justify-content: center;
-		width: -webkit-fit-content;
-		width: fit-content;
-	}
+  .mobile-content a {
+    font-size: 1.125rem;
+    padding: 10px;
+    justify-content: center;
+    width: -webkit-fit-content;
+    width: fit-content;
+  }
 </style>

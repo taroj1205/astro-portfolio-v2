@@ -1,28 +1,28 @@
 <hr class="content-divider" />
 
 <style is:global>
-	:root {
-		--light-content-divider: hsl(213, 9%, 46%);
-		--dark-content-divider: hsl(213, 9%, 26%);
+  :root {
+    --light-content-divider: hsl(213, 9%, 46%);
+    --dark-content-divider: hsl(213, 9%, 26%);
 
-		--content-divider: var(--light-content-divider);
-	}
+    --content-divider: var(--light-content-divider);
+  }
 
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--content-divider: var(--dark-content-divider);
-		}
-	}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --content-divider: var(--dark-content-divider);
+    }
+  }
 
-	.content-divider {
-		border: none;
-		padding: 1px 0;
-		background: linear-gradient(
-			to right,
-			transparent,
-			var(--content-divider),
-			transparent
-		);
-		margin: 0;
-	}
+  .content-divider {
+    border: none;
+    padding: 1px 0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--content-divider),
+      transparent
+    );
+    margin: 0;
+  }
 </style>

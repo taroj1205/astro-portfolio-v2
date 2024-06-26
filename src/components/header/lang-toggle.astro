@@ -6,7 +6,8 @@ const { lang } = Astro.props
 
 <a
   href={`/${lang === "ja" ? "en" : "ja"}`}
-  title={lang === "ja" ? "To English" : "日本語へ"}>
+  title={lang === "ja" ? "To English" : "日本語へ"}
+>
   {
     lang === "ja" ? (
       <JapanIcon size="1.5rem" />
