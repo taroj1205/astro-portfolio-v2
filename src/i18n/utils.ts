@@ -1,4 +1,4 @@
-import type { Translation } from "../locales/en/translation"
+import type { Translation } from "../locales/en"
 import { defaultLang, ui } from "./ui"
 
 export function getLangFromUrl(url: URL) {
