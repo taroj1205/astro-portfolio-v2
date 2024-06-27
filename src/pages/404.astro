@@ -4,7 +4,7 @@ import { getLangFromUrl, getTranslations } from "../i18n/utils"
 import Layout from "../layouts/Layout.astro"
 
 const lang = getLangFromUrl(Astro.url) || "en"
-const { metadata, notFound } = getTranslations(lang)
+const { metadata, notFound, heading } = getTranslations(lang)
 
 export const getStaticPaths = () => {
   return Object.keys(languages).map((lang) => ({
@@ -15,7 +15,7 @@ export const getStaticPaths = () => {
 
 <Layout title={metadata.title} description={metadata.description} lang={lang}>
   <h1>404</h1>
-  <h2>{notFound.title}</h2>
+  <h2>{heading.notFound}</h2>
   <a href={`/${lang}`}>{notFound.goBack}</a>
 </Layout>
 
