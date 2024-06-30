@@ -18,20 +18,25 @@ export const briefIntro = {
       title: "2023年までに3カ国で11校を経験しました。",
       description: "日本、ニュージーランドとフィリピン",
     },
+  },
+  hobbies: {
+    soccer: { title: "サッカー", order: 1 },
+    programming: { title: "プログラミング", order: 2 },
     kendama: {
       title: "けん玉",
-      description: "",
+      video: "https://www.youtube.com/embed/9Y-NWFB--f8",
+      drawer: true,
+      order: 3,
     },
     juggling: {
       title: "ジャグリング",
       description: "ジャグリングを練習中です。",
+      video: "https://www.youtube.com/embed/TaWXgxbzoOI",
+      drawer: true,
+      order: 4,
     },
-  },
-  hobbies: {
-    soccer: "サッカー",
-    programming: "プログラミング",
-    "shorinji kempo": "少林寺拳法",
-    "table tennis": "卓球",
+    "table tennis": { title: "卓球", order: 5 },
+    "shorinji kempo": { title: "少林寺拳法", order: 6 },
     tennis: "テニス",
     basketball: "バスケ",
     volleyball: "バレーボール",
@@ -40,6 +45,7 @@ export const briefIntro = {
     running: "ランニング",
     "pen spinning": "ペン回し",
     badminton: "バドミントン",
+    yoyo: "ヨーヨー",
   },
   "part time job": {
     westlake:
