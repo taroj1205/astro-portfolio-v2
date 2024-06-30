@@ -15,20 +15,26 @@ export const briefIntro = {
       title: "Been to 3 countries in 11 schools in 2023.",
       description: "Japan, Philippines and New Zealand",
     },
+  },
+  hobbies: {
+    soccer: { title: "Football (Soccer)", order: 1 },
+    programming: { title: "Programming", order: 2 },
     kendama: {
       title: "Kendama (けん玉)",
       description: "Japanese Traditional Toy like Yo-yo",
+      video: "https://www.youtube.com/embed/9Y-NWFB--f8",
+      drawer: true,
+      order: 3,
     },
     juggling: {
       title: "Juggling",
       description: "This is me practising juggling.",
+      video: "https://www.youtube.com/embed/TaWXgxbzoOI",
+      drawer: true,
+      order: 4,
     },
-  },
-  hobbies: {
-    soccer: "Football (Soccer)",
-    programming: "Programming",
-    "shorinji kempo": "Shorinji Kempo",
-    "table tennis": "Table Tennis",
+    "table tennis": { title: "Table Tennis", order: 5 },
+    "shorinji kempo": { title: "Shorinji Kempo", order: 6 },
     tennis: "Tennis",
     basketball: "Basketball",
     volleyball: "Volleyball",
@@ -37,6 +43,7 @@ export const briefIntro = {
     running: "Running",
     "pen spinning": "Pen Spinnning",
     badminton: "Badminton",
+    yoyo: "Yo-yo",
   },
   "part time job": {
     westlake:

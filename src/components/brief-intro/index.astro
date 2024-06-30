@@ -1,4 +1,5 @@
 ---
+import { isString } from "@yamada-ui/utils"
 import { getTranslations } from "../../i18n/utils"
 import SchoolHistory from "./school-history.astro"
 
@@ -8,141 +9,124 @@ const { heading, briefIntro } = getTranslations(lang)
 ---
 
 <div class="vstack">
-  <h2>{heading.briefIntro.title}</h2>
-  <ul class="disc-list">
-    <li>{briefIntro.born}</li>
-    <li>{briefIntro.age}</li>
-    <li>{briefIntro["high school"]}</li>
-    <li>
-      {briefIntro.university}
-      <ul>
-        <li>{briefIntro["bachelor"]}</li>
-      </ul>
-    </li>
-    <li>
-      <details>
-        <summary>
-          {briefIntro.drawer.schools.title}
-        </summary>
-        <div>
-          <p>{briefIntro.drawer.schools.description}</p>
-          <SchoolHistory lang={lang} />
-        </div>
-      </details>
-    </li>
-  </ul>
-  <h3>{heading.briefIntro.livedIn}</h3>
-  <ul class="disc-list">
-    <li>{briefIntro["lived in"].japan}</li>
-    <li>{briefIntro["lived in"].philippines}</li>
-    <li>{briefIntro["lived in"].newzealand}</li>
-  </ul>
-  <h3>{heading.briefIntro.hobbies}</h3>
-  <ul class="disc-list">
-    <li>{briefIntro.hobbies.programming}</li>
-    <li>{briefIntro.hobbies.soccer}</li>
-    <li>
-      <details>
-        <summary>
-          {briefIntro.drawer.kendama.title}
-        </summary>
-        <div>
-          <p>{briefIntro.drawer.kendama.description}</p>
-          <iframe
-            width="315"
-            height="560"
-            loading="lazy"
-            src={`https://www.youtube.com/embed/9Y-NWFB--f8`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-      </details>
-    </li>
-    <li>
-      <details>
-        <summary>
-          {briefIntro.drawer.juggling.title}
-        </summary>
-        <div>
-          <p>{briefIntro.drawer.juggling.description}</p>
-          <iframe
-            width="315"
-            height="560"
-            loading="lazy"
-            src="https://www.youtube.com/embed/TaWXgxbzoOI"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-        </div>
-      </details>
-    </li>
-    <li>{briefIntro.hobbies["shorinji kempo"]}</li>
-    <li>{briefIntro.hobbies["table tennis"]}</li>
-    <li>{briefIntro.hobbies.tennis}</li>
-    <li>{briefIntro.hobbies.basketball}</li>
-    <li>{briefIntro.hobbies.badminton}</li>
-    <li>{briefIntro.hobbies.volleyball}</li>
-    <li>{briefIntro.hobbies.baseball}</li>
-    <li>{briefIntro.hobbies.softball}</li>
-    <li>{briefIntro.hobbies.running}</li>
-    <li>{briefIntro.hobbies["pen spinning"]}</li>
-  </ul>
-  <h3>{heading.briefIntro.partTimeJob}</h3>
-  <ul class="disc-list">
-    <li>{briefIntro["part time job"].westlake}</li>
-  </ul>
+	<h2>{heading.briefIntro.title}</h2>
+	<ul class="disc-list">
+		<li>{briefIntro.born}</li>
+		<li>{briefIntro.age}</li>
+		<li>{briefIntro["high school"]}</li>
+		<li>
+			{briefIntro.university}
+			<ul>
+				<li>{briefIntro["bachelor"]}</li>
+			</ul>
+		</li>
+		<li>
+			<details>
+				<summary>
+					{briefIntro.drawer.schools.title}
+				</summary>
+				<div>
+					<p>{briefIntro.drawer.schools.description}</p>
+					<SchoolHistory lang={lang} />
+				</div>
+			</details>
+		</li>
+	</ul>
+	<h3>{heading.briefIntro.livedIn}</h3>
+	<ul class="disc-list">
+		<li>{briefIntro["lived in"].japan}</li>
+		<li>{briefIntro["lived in"].philippines}</li>
+		<li>{briefIntro["lived in"].newzealand}</li>
+	</ul>
+	<h3>{heading.briefIntro.hobbies}</h3>
+	<ul class="disc-list">
+		{
+			Object.entries(briefIntro.hobbies).map(([key, hobby]) => {
+				if (isString(hobby)) return <li>{hobby}</li>
+
+				const title = hobby.title ?? hobby
+				if ("drawer" in hobby && hobby.drawer)
+					return (
+						<li>
+							<details>
+								<summary>{title}</summary>
+								<div>
+									{hobby.description ? <p>{hobby.description}</p> : null}
+									{hobby.video ? (
+										<iframe
+											width="315"
+											height="560"
+											loading="lazy"
+											src={hobby.video}
+											title={title}
+											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+											allowfullscreen
+										/>
+									) : null}
+								</div>
+							</details>
+						</li>
+					)
+
+				return <li>{title}</li>
+			})
+		}
+	</ul>
+	<h3>{heading.briefIntro.partTimeJob}</h3>
+	<ul class="disc-list">
+		<li>{briefIntro["part time job"].westlake}</li>
+	</ul>
 </div>
 
 <style>
-  details {
-    border: none;
-    padding: 0;
-    background-color: transparent;
-  }
+	details {
+		border: none;
+		padding: 0;
+		background-color: transparent;
+	}
 
-  details[open] iframe {
-    display: block;
-  }
+	details[open] iframe {
+		display: block;
+	}
 
-  summary {
-    cursor: pointer;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    border-radius: 0;
-    list-style: none;
-    display: inline;
-    text-decoration: underline;
-    outline: none;
-  }
+	summary {
+		cursor: pointer;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+		background-color: transparent;
+		border-radius: 0;
+		list-style: none;
+		display: inline;
+		text-decoration: underline;
+		outline: none;
+	}
 
-  summary::-webkit-details-marker {
-    display: none;
-  }
+	summary::-webkit-details-marker {
+		display: none;
+	}
 
-  summary:hover {
-    text-decoration: none;
-  }
+	summary:hover {
+		text-decoration: none;
+	}
 
-  details p {
-    padding: 10px 0;
-    margin: 0;
-  }
+	details p {
+		padding: 10px 0;
+		margin: 0;
+	}
 
-  iframe {
-    display: none;
-    width: auto;
-    max-width: 100%;
-    height: 560px;
-    aspect-ratio: 9 / 16;
-    border-radius: 10px;
-    border-color: transparent;
-  }
+	iframe {
+		display: none;
+		width: auto;
+		max-width: 100%;
+		height: 560px;
+		aspect-ratio: 9 / 16;
+		border-radius: 10px;
+		border-color: transparent;
+	}
 
-  .disc-list > li {
-    font-size: large;
-    line-height: 1.5;
-  }
+	.disc-list > li {
+		font-size: large;
+		line-height: 1.5;
+	}
 </style>
