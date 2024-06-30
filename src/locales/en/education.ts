@@ -1,0 +1,135 @@
+export const education = {
+  headings: {
+    duration: "Period",
+    end: "End",
+    grade: "Year Level",
+    location: "Location",
+    schoolName: "Name",
+    start: "Start",
+    period: "Period",
+  },
+  schoolHistory: "Academic Background",
+  schools: [
+    {
+      duration: "A year",
+      end: "05/2010",
+      grade: "1 & 2nd Year",
+      location: {
+        country: "Japan",
+        region: "Tokyo",
+      },
+      name: "Tokyo Tomonokai Setagaya Infant Life Group",
+      start: "04/2009",
+    },
+    {
+      duration: "A year",
+      end: "04/2011",
+      grade: "2nd Year",
+      location: {
+        country: "Japan",
+        region: "Tokyo",
+      },
+      name: "Kinuta Kindergarten",
+      start: "05/2010",
+    },
+    {
+      duration: "A year",
+      end: "03/2012",
+      grade: "Last (3rd) Year",
+      location: {
+        country: "Japan",
+        region: "Ehime",
+      },
+      name: "Wakakusa Kindergarten",
+      start: "05/2011",
+    },
+    {
+      duration: "2 months",
+      end: "06/2012",
+      grade: "Year 1",
+      location: {
+        country: "Japan",
+        region: "Ehime",
+      },
+      name: "Habu Elementary School",
+      start: "04/2012",
+    },
+    {
+      duration: "4.5 years",
+      end: "12/2016",
+      grade: "Year 1 to Year 5",
+      location: {
+        country: "Japan",
+        region: "Ehime",
+      },
+      name: "Hiura Elementary School",
+      start: "06/2012",
+    },
+    {
+      duration: "A year",
+      end: "12/2017",
+      grade: "Year 7",
+      location: {
+        country: "New Zealand",
+        region: "Auckland",
+      },
+      name: "Balmoral Intermediate",
+      start: "02/2017",
+    },
+    {
+      duration: "3 months",
+      end: "03/2018",
+      grade: "Year 6",
+      location: {
+        country: "Japan",
+        region: "Ehime",
+      },
+      name: "Hiura Elementary School",
+      start: "01/2018",
+    },
+    {
+      duration: "3 months",
+      end: "07/2018",
+      grade: "-",
+      location: {
+        country: "The Philippines",
+        region: "Cebu",
+      },
+      name: "Takahari English School",
+      start: "04/2018",
+    },
+    {
+      duration: "2-3 Weeks",
+      end: "07/2018",
+      grade: "Year 7",
+      location: {
+        country: "Japan",
+        region: "Ehime",
+      },
+      name: "Kuwabara Junior High School",
+      start: "07/2018",
+    },
+    {
+      duration: "A year",
+      end: "05/2019",
+      grade: "Year 8",
+      location: {
+        country: "The Philippines",
+        region: "Cebu",
+      },
+      name: "Centre for International Education British School",
+      start: "08/2018",
+    },
+    {
+      duration: "5 years",
+      end: "12/2023",
+      grade: "Year 9 to Year 13",
+      location: {
+        country: "New Zealand",
+        region: "Auckland",
+      },
+      name: "Westlake Boys High School (Expected graduation)",
+      start: "08/2018",
+    },
+  ],
+}

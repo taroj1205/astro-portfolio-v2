@@ -4,11 +4,11 @@ import SchoolHistory from "./school-history.astro"
 
 const { lang } = Astro.props
 
-const { briefIntro } = getTranslations(lang)
+const { heading, briefIntro } = getTranslations(lang)
 ---
 
 <div class="vstack">
-  <h2>{briefIntro.title}</h2>
+  <h2>{heading.briefIntro.title}</h2>
   <ul class="disc-list">
     <li>{briefIntro.born}</li>
     <li>{briefIntro.age}</li>
@@ -31,13 +31,13 @@ const { briefIntro } = getTranslations(lang)
       </details>
     </li>
   </ul>
-  <h3>{briefIntro["lived in"].heading}</h3>
+  <h3>{heading.briefIntro.livedIn}</h3>
   <ul class="disc-list">
     <li>{briefIntro["lived in"].japan}</li>
     <li>{briefIntro["lived in"].philippines}</li>
     <li>{briefIntro["lived in"].newzealand}</li>
   </ul>
-  <h3>{briefIntro.hobbies.heading}</h3>
+  <h3>{heading.briefIntro.hobbies}</h3>
   <ul class="disc-list">
     <li>{briefIntro.hobbies.programming}</li>
     <li>{briefIntro.hobbies.soccer}</li>
@@ -88,7 +88,7 @@ const { briefIntro } = getTranslations(lang)
     <li>{briefIntro.hobbies.running}</li>
     <li>{briefIntro.hobbies["pen spinning"]}</li>
   </ul>
-  <h3>{briefIntro["part time job"].heading}</h3>
+  <h3>{heading.briefIntro.partTimeJob}</h3>
   <ul class="disc-list">
     <li>{briefIntro["part time job"].westlake}</li>
   </ul>

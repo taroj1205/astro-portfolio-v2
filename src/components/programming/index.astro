@@ -4,15 +4,15 @@ import Languages from "./languages.astro"
 import Projects from "./projects/index.astro"
 
 const { lang } = Astro.props
-const dict = getTranslations(lang)
+const { heading } = getTranslations(lang)
 ---
 
 <div class="vstack">
-  <h2>{dict.heading.programming}</h2>
-  <h3>{dict.heading["open source"]}</h3>
+  <h2>{heading.programming.title}</h2>
+  <h3>{heading.programming.openSource.title}</h3>
   <ul class="disc-list">
     <li>
-      {dict["open source"]["yamada"].title}
+      {heading.programming.openSource.yamada.title}
       <ul>
         <li>
           <a

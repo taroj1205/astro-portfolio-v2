@@ -1,5 +1,5 @@
-import { translations as translationsEN } from "../locales/en/translation"
-import { translations as translationsJA } from "../locales/ja/translation"
+import { translations as translationsEN } from "../locales/en"
+import { translations as translationsJA } from "../locales/ja"
 
 export const languages = {
   en: "English",
