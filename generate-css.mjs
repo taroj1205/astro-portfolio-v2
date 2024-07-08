@@ -37,13 +37,15 @@ const mediaPrefersReducedMotion = `@media (prefers-reduced-motion: reduce) {${te
   )
   .join("")}}`
 
-// Path to the CSS file
+const compressedCSS = (cssRules + mediaPrefersReducedMotion)
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{}:;,+])\s*/g, "$1")
+
 const cssFilePath = path.join(
   process.cwd(),
   "./src/components/programming/projects/card.css",
 )
 
-// Write the generated CSS to the file
-fs.writeFileSync(cssFilePath, cssRules + mediaPrefersReducedMotion, "utf8")
+fs.writeFileSync(cssFilePath, compressedCSS, "utf8")
 
-console.log("CSS rules written to", cssFilePath)
+console.log("Compressed CSS rules written to", cssFilePath)

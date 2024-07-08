@@ -2,362 +2,362 @@
 import { getTranslations } from "../../../i18n/utils"
 import "./card.css"
 import ProjectCard from "./project-card.astro"
-import { projectsArray } from "./projects-array"
+import { projectsArray } from "./projects-array.astro"
 
 const { lang } = Astro.props
 
 const { heading } = getTranslations(lang)
 const projects = projectsArray(lang)
 const techs = [
-  ...new Set(
-    projects.flatMap((project) => [project.framework, project.lang]).flat(),
-  ),
+	...new Set(
+		projects.flatMap((project) => [project.framework, project.lang]).flat(),
+	),
 ]
 ---
 
 <h3>{heading.programming.projects}</h3>
 <div class="projects-view-container">
-  <form id="projects-view">
-    <fieldset>
-      <input id="all" type="radio" name="tech" value="all" />
-      <label for="all">{lang === "en" ? "All" : "全て"}</label>
-      {
-        techs.map((tech) => (
-          <>
-            <input
-              id={tech}
-              type="radio"
-              name="tech"
-              value={tech.toLowerCase().replace(/\./g, "").replace(/#/g, "s")}
-            />
-            <label for={tech} title={tech}>
-              {tech}
-            </label>
-          </>
-        ))
-      }
-    </fieldset>
-  </form>
-  <form id="projects-view-toggle">
-    <input type="checkbox" id="projects-view-expand" />
-    <label class="expand" for="projects-view-expand">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
-  </form>
+	<form id="projects-view">
+		<fieldset>
+			<input id="all" type="radio" name="tech" value="all" />
+			<label for="all">{lang === "en" ? "All" : "全て"}</label>
+			{
+				techs.map((tech) => (
+					<>
+						<input
+							id={tech}
+							type="radio"
+							name="tech"
+							value={tech.toLowerCase().replace(/\./g, "").replace(/#/g, "s")}
+						/>
+						<label for={tech} title={tech}>
+							{tech}
+						</label>
+					</>
+				))
+			}
+		</fieldset>
+	</form>
+	<form id="projects-view-toggle">
+		<input type="checkbox" id="projects-view-expand" />
+		<label class="expand" for="projects-view-expand">
+			<div></div>
+			<div></div>
+			<div></div>
+		</label>
+	</form>
 </div>
 <div class="projects-container">
-  {projects.map((project) => <ProjectCard project={project} />)}
+	{projects.map((project) => <ProjectCard project={project} />)}
 </div>
 
 <style>
-  .projects-container {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
-    column-count: 1;
-    -moz-column-gap: 1rem;
-    -webkit-column-gap: 1rem;
-    column-gap: 1rem;
-  }
+	.projects-container {
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+		-moz-column-gap: 1rem;
+		-webkit-column-gap: 1rem;
+		column-gap: 1rem;
+	}
 
-  @media (min-width: 640px) {
-    .projects-container {
-      -moz-column-count: 2;
-      -webkit-column-count: 2;
-      column-count: 2;
-    }
-  }
+	@media (min-width: 640px) {
+		.projects-container {
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			column-count: 2;
+		}
+	}
 
-  @media (min-width: 1280px) {
-    .projects-container {
-      -moz-column-count: 3;
-      -webkit-column-count: 3;
-      column-count: 3;
-    }
-  }
+	@media (min-width: 1280px) {
+		.projects-container {
+			-moz-column-count: 3;
+			-webkit-column-count: 3;
+			column-count: 3;
+		}
+	}
 
-  #projects-view-expand {
-    display: none;
-  }
+	#projects-view-expand {
+		display: none;
+	}
 
-  #projects-view-toggle {
-    display: none;
-    height: 3.5rem;
-    width: 3.5rem;
-  }
+	#projects-view-toggle {
+		display: none;
+		height: 3.5rem;
+		width: 3.5rem;
+	}
 
-  #projects-view-expand:checked ~ label div:first-child {
-    transform: rotate(45deg);
-  }
+	#projects-view-expand:checked ~ label div:first-child {
+		transform: rotate(45deg);
+	}
 
-  #projects-view-expand:checked ~ label div:last-child {
-    transform: rotate(-45deg);
-  }
+	#projects-view-expand:checked ~ label div:last-child {
+		transform: rotate(-45deg);
+	}
 
-  #projects-view-expand:checked ~ label div:nth-child(2) {
-    opacity: 0;
-    transform: translateX(10px);
-  }
+	#projects-view-expand:checked ~ label div:nth-child(2) {
+		opacity: 0;
+		transform: translateX(10px);
+	}
 
-  .projects-view-container:has(#projects-view-expand:checked)
-    form#projects-view
-    fieldset {
-    flex-wrap: wrap;
-    overflow: hidden;
-  }
+	.projects-view-container:has(#projects-view-expand:checked)
+		form#projects-view
+		fieldset {
+		flex-wrap: wrap;
+		overflow: hidden;
+	}
 
-  .projects-view-container:has(#projects-view-expand:checked) .expand {
-    right: 0;
-  }
+	.projects-view-container:has(#projects-view-expand:checked) .expand {
+		right: 0;
+	}
 
-  .expand {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    cursor: pointer;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    display: flex;
-  }
+	.expand {
+		height: 100%;
+		aspect-ratio: 1 / 1;
+		cursor: pointer;
+		padding: 0;
+		justify-content: center;
+		align-items: center;
+		border: none;
+		display: flex;
+	}
 
-  @media (max-width: 800px) and (max-height: 800px) {
-    #projects-view-toggle {
-      display: flex;
-    }
-  }
+	@media (max-width: 800px) and (max-height: 800px) {
+		#projects-view-toggle {
+			display: flex;
+		}
+	}
 
-  .expand div {
-    width: 1.5rem;
-    height: 0.1rem;
-    background-color: var(--gray-color);
-    transition: transform 0.3s;
-    position: absolute;
-  }
+	.expand div {
+		width: 1.5rem;
+		height: 0.1rem;
+		background-color: var(--gray-color);
+		transition: transform 0.3s;
+		position: absolute;
+	}
 
-  label.expand div:first-child {
-    transform: translateY(-0.5rem);
-  }
+	label.expand div:first-child {
+		transform: translateY(-0.5rem);
+	}
 
-  label.expand div:nth-child(2) {
-    transition: transform 0.4s;
-  }
+	label.expand div:nth-child(2) {
+		transition: transform 0.4s;
+	}
 
-  label.expand div:last-child {
-    transform: translateY(0.5rem);
-  }
+	label.expand div:last-child {
+		transform: translateY(0.5rem);
+	}
 
-  :root {
-    --input-text: hsl(0, 0%, 20%);
-    --input-background-light: hsl(0, 0%, 96%);
-    --input-highlight-text: hsl(0, 0%, 10%);
-    --input-highlight-background: hsl(210, 100%, 80%);
-    --field-background: hsla(210, 20%, 90%, 0.8);
-    --card-bg: hsl(210, 25%, 95%);
-    --card-border: hsl(0, 0%, 80%);
-    --card-footer-bg: hsl(210, 20%, 94%);
-  }
+	:root {
+		--input-text: hsl(0, 0%, 20%);
+		--input-background-light: hsl(0, 0%, 96%);
+		--input-highlight-text: hsl(0, 0%, 10%);
+		--input-highlight-background: hsl(210, 100%, 80%);
+		--field-background: hsla(210, 20%, 90%, 0.8);
+		--card-bg: hsl(210, 25%, 95%);
+		--card-border: hsl(0, 0%, 80%);
+		--card-footer-bg: hsl(210, 20%, 94%);
+	}
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --input-text: hsl(0, 0%, 80%);
-      --input-background: hsl(0, 0%, 12%);
-      --input-highlight-text: hsl(0, 0%, 100%);
-      --input-highlight-background: hsl(210, 80%, 40%);
-      --field-background: hsla(0, 0%, 0%, 0.8);
-      --card-bg: hsl(0, 0%, 8%);
-      --card-border: hsl(0, 0%, 28%);
-      --card-footer-bg: hsl(0, 0%, 10%);
-    }
-  }
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--input-text: hsl(0, 0%, 80%);
+			--input-background: hsl(0, 0%, 12%);
+			--input-highlight-text: hsl(0, 0%, 100%);
+			--input-highlight-background: hsl(210, 80%, 40%);
+			--field-background: hsla(0, 0%, 0%, 0.8);
+			--card-bg: hsl(0, 0%, 8%);
+			--card-border: hsl(0, 0%, 28%);
+			--card-footer-bg: hsl(0, 0%, 10%);
+		}
+	}
 
-  .projects-view-container {
-    position: sticky;
-    top: 4rem;
-    margin-inline: auto;
-    margin-block: 1rem;
-    border: none;
-    z-index: 99;
-    display: flex;
-    gap: 0;
-    max-width: 90vw;
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    transition: background-color 0.3s;
-    background-color: var(--field-background);
-    border-radius: 0.45rem;
-    overflow: hidden;
-    width: -webkit-fit-content;
-    width: fit-content;
-  }
+	.projects-view-container {
+		position: sticky;
+		top: 4rem;
+		margin-inline: auto;
+		margin-block: 1rem;
+		border: none;
+		z-index: 99;
+		display: flex;
+		gap: 0;
+		max-width: 90vw;
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+		transition: background-color 0.3s;
+		background-color: var(--field-background);
+		border-radius: 0.45rem;
+		overflow: hidden;
+		width: -webkit-fit-content;
+		width: fit-content;
+	}
 
-  form#projects-view {
-    max-width: 90vw;
-    overflow-x: auto;
-  }
+	form#projects-view {
+		max-width: 90vw;
+		overflow-x: auto;
+	}
 
-  form#projects-view fieldset {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    margin: 0;
-    border: none;
-    background: none;
-    position: relative;
-  }
+	form#projects-view fieldset {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+		padding: 0.5rem;
+		margin: 0;
+		border: none;
+		background: none;
+		position: relative;
+	}
 
-  @media (max-width: 600px) {
-    .projects-view-container {
-      top: 5rem;
-    }
-  }
+	@media (max-width: 600px) {
+		.projects-view-container {
+			top: 5rem;
+		}
+	}
 
-  @media (max-width: 800px) and (min-height: 600px) {
-    #projects-view fieldset {
-      flex-wrap: wrap;
-      align-items: center;
-    }
-  }
+	@media (max-width: 800px) and (min-height: 600px) {
+		#projects-view fieldset {
+			flex-wrap: wrap;
+			align-items: center;
+		}
+	}
 
-  @media (max-height: 800px) {
-    #projects-view fieldset {
-      flex-wrap: nowrap;
-    }
-  }
+	@media (max-height: 800px) {
+		#projects-view fieldset {
+			flex-wrap: nowrap;
+		}
+	}
 
-  form#projects-view label {
-    display: flex;
-    color: var(--input-text);
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 0.4rem;
-    transition:
-      background-color 0.3s ease-in-out,
-      color 0.3s ease-in-out;
-    text-wrap: nowrap;
-    place-items: center;
-    vertical-align: middle;
-  }
+	form#projects-view label {
+		display: flex;
+		color: var(--input-text);
+		font-size: 1rem;
+		cursor: pointer;
+		padding: 0.5rem 1rem;
+		border-radius: 0.4rem;
+		transition:
+			background-color 0.3s ease-in-out,
+			color 0.3s ease-in-out;
+		text-wrap: nowrap;
+		place-items: center;
+		vertical-align: middle;
+	}
 
-  @media (max-width: 800px) and (min-height: 600px) {
-    form#projects-view label {
-      place-self: start;
-    }
-  }
+	@media (max-width: 800px) and (min-height: 600px) {
+		form#projects-view label {
+			place-self: start;
+		}
+	}
 
-  form#projects-view label:hover {
-    background-color: var(--input-highlight-background);
-    color: var(--input-highlight-text);
-  }
+	form#projects-view label:hover {
+		background-color: var(--input-highlight-background);
+		color: var(--input-highlight-text);
+	}
 
-  form#projects-view input[type="radio"] {
-    display: none;
-  }
+	form#projects-view input[type="radio"] {
+		display: none;
+	}
 
-  form#projects-view input[type="radio"]:checked + label {
-    background-color: var(--input-highlight-background);
-    color: var(--input-highlight-text);
-  }
+	form#projects-view input[type="radio"]:checked + label {
+		background-color: var(--input-highlight-background);
+		color: var(--input-highlight-text);
+	}
 
-  .projects-view-container:not(:has(input[type="radio"]:checked))
-    label[for="all"] {
-    background-color: var(--input-highlight-background);
-    color: var(--input-highlight-text) !important;
-  }
+	.projects-view-container:not(:has(input[type="radio"]:checked))
+		label[for="all"] {
+		background-color: var(--input-highlight-background);
+		color: var(--input-highlight-text) !important;
+	}
 
-  form#projects-view input[type="radio"]:focus + label {
-    outline: 2px solid var(--input-highlight-background);
-    outline-offset: 2px;
-  }
+	form#projects-view input[type="radio"]:focus + label {
+		outline: 2px solid var(--input-highlight-background);
+		outline-offset: 2px;
+	}
 
-  :global(.project-card) {
-    animation: card-out 0.5s ease-in-out forwards;
-  }
+	:global(.project-card) {
+		animation: card-out 0.5s ease-in-out forwards;
+	}
 
-  .projects-view-container:not(:has(input[type="radio"]:checked))
-    + .projects-container
-    :global(.project-card) {
-    animation: none;
-    opacity: 1;
-    transform: translateY(0);
-    height: auto;
-    width: 100%;
-    border: 1px solid var(--card-border);
-    margin-bottom: 1rem;
-    position: relative;
-  }
+	.projects-view-container:not(:has(input[type="radio"]:checked))
+		+ .projects-container
+		:global(.project-card) {
+		animation: none;
+		opacity: 1;
+		transform: translateY(0);
+		height: auto;
+		width: 100%;
+		border: 1px solid var(--card-border);
+		margin-bottom: 1rem;
+		position: relative;
+	}
 
-  .projects-view-container:has(input[value="all"]:checked)
-    + .projects-container
-    :global(.project-card) {
-    animation: card-in 0.5s ease-in-out forwards;
-  }
+	.projects-view-container:has(input[value="all"]:checked)
+		+ .projects-container
+		:global(.project-card) {
+		animation: card-in 0.5s ease-in-out forwards;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    :global(.project-card) {
-      border: 1px solid var(--card-border);
-      display: none;
-    }
-    .projects-view-container:not(:has(input[type="radio"]:checked))
-      + .projects-container
-      :global(.project-card) {
-      display: flex;
-    }
-    .projects-view-container:has(input[value="all"]:checked)
-      + .projects-container
-      :global(.project-card) {
-      display: flex;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		:global(.project-card) {
+			border: 1px solid var(--card-border);
+			display: none;
+		}
+		.projects-view-container:not(:has(input[type="radio"]:checked))
+			+ .projects-container
+			:global(.project-card) {
+			display: flex;
+		}
+		.projects-view-container:has(input[value="all"]:checked)
+			+ .projects-container
+			:global(.project-card) {
+			display: flex;
+		}
+	}
 </style>
 
 <style is:global>
-  @keyframes card-in {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-      height: 0;
-      width: 0;
-      border: none;
-      margin-bottom: 0;
-      position: absolute;
-      display: none;
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-      height: auto;
-      width: 100%;
-      border: 1px solid var(--card-border);
-      margin-bottom: 1rem;
-      position: relative;
-      display: flex;
-    }
-  }
+	@keyframes card-in {
+		from {
+			opacity: 0;
+			transform: translateY(100%);
+			height: 0;
+			width: 0;
+			border: none;
+			margin-bottom: 0;
+			position: absolute;
+			display: none;
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+			height: auto;
+			width: 100%;
+			border: 1px solid var(--card-border);
+			margin-bottom: 1rem;
+			position: relative;
+			display: flex;
+		}
+	}
 
-  @keyframes card-out {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-      height: auto;
-      width: 100%;
-      border: 1px solid var(--card-border);
-      margin-bottom: 1rem;
-      position: relative;
-      display: flex;
-    }
-    to {
-      opacity: 0;
-      transform: translateY(100%);
-      height: 0;
-      width: 0;
-      border: none;
-      margin-bottom: 0;
-      position: absolute;
-      display: none;
-    }
-  }
+	@keyframes card-out {
+		from {
+			opacity: 1;
+			transform: translateY(0);
+			height: auto;
+			width: 100%;
+			border: 1px solid var(--card-border);
+			margin-bottom: 1rem;
+			position: relative;
+			display: flex;
+		}
+		to {
+			opacity: 0;
+			transform: translateY(100%);
+			height: 0;
+			width: 0;
+			border: none;
+			margin-bottom: 0;
+			position: absolute;
+			display: none;
+		}
+	}
 </style>
