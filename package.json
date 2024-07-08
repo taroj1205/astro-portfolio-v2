@@ -15,8 +15,10 @@
     "@playform/compress": "^0.0.13",
     "@yamada-ui/utils": "^1.3.0",
     "astro": "^4.7.1",
+    "astro-purgecss": "^4.1.1",
     "astro-seo-metadata": "^0.6.0",
-    "marked": "^13.0.1"
+    "marked": "^13.0.1",
+    "purgecss": "^6.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
