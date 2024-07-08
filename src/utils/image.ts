@@ -1,7 +1,7 @@
 export const generateSizesAndWidths = (
   width: number,
   height: number,
-  minWidth: number,
+  minWidth = 320,
 ) => {
   const aspectRatio = height / width
   const widthArray = [320, 480, 640, 800, 960, 1120, 1280, 1440, 1600, 1920]
