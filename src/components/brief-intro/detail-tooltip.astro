@@ -2,8 +2,8 @@
 const { text, tooltip, float } = Astro.props
 ---
 
-<div class="tooltip">
-	{text}
+<div class="tooltip" tabindex="0">
+	<p>{text}</p>
 	<span class={`tooltiptext ${float === "right" ? "float-right" : ""}`}
 		>{tooltip}</span
 	>
@@ -13,8 +13,13 @@ const { text, tooltip, float } = Astro.props
 	.tooltip {
 		position: relative;
 		display: inline-block;
-		border-bottom: 1px dotted black;
 		cursor: pointer;
+		border-bottom: 1px dotted black;
+	}
+
+	.tooltip p {
+		margin: 0;
+		font-size: inherit;
 	}
 
 	.tooltip .tooltiptext {
@@ -39,8 +44,7 @@ const { text, tooltip, float } = Astro.props
 		transition: opacity 0.3s;
 	}
 
-	.tooltip:hover .tooltiptext,
-	.tooltip:active .tooltiptext {
+	.tooltip:hover .tooltiptext {
 		visibility: visible;
 		opacity: 1;
 		white-space: normal;
