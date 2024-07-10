@@ -63,9 +63,8 @@ const url = Astro.site
       }
 
       main {
-        max-width: 64rem;
-        margin-inline: auto;
-        padding: 1rem 1rem;
+        max-width: min(64rem, 100%);
+        margin-inline: 1rem;
         z-index: 0;
         gap: 1rem;
         display: flex;
