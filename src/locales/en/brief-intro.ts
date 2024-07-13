@@ -44,6 +44,7 @@ export const briefIntro = {
     "pen spinning": "Pen Spinnning",
     badminton: "Badminton",
     yoyo: "Yo-yo",
+    pickleball: "Pickleball",
   },
   "part time job": {
     westlake:
