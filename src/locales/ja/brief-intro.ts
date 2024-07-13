@@ -46,6 +46,7 @@ export const briefIntro = {
     "pen spinning": "ペン回し",
     badminton: "バドミントン",
     yoyo: "ヨーヨー",
+    pickleball: "ピックルボール",
   },
   "part time job": {
     westlake:
