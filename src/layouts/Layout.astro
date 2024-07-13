@@ -38,118 +38,17 @@ const url = Astro.site
     />
     <title>{title}</title>
   </head>
-  <body>
+  <body
+    class="m-0 flex min-h-svh flex-col items-center justify-between text-pretty break-words bg-white align-middle font-sans text-black has-[#close-drawer:checked]:overflow-hidden has-[#close-drawer:checked]:overscroll-contain dark:bg-zinc-900 dark:text-white"
+  >
     <Header lang={lang} />
-    <main><slot /></main>
+    <main
+      class="z-0 flex w-[min(64rem,100%)] max-w-5xl flex-col gap-4 overflow-clip p-4 text-lg"
+    >
+      <slot />
+    </main>
     <Footer lang={lang} />
     <style is:global>
-      body {
-        font-family:
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
-        margin: 0;
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        text-wrap: pretty;
-        word-wrap: break-word;
-        vertical-align: middle;
-        container-type: inline-size;
-      }
-
-      main {
-        max-width: min(64rem, 100%);
-        margin-inline: 1rem;
-        z-index: 0;
-        gap: 1rem;
-        display: flex;
-        flex-direction: column;
-        overflow-y: clip;
-      }
-
-      p,
-      li,
-      strong {
-        font-size: 1.125rem;
-      }
-
-      p,
-      ul {
-        margin: 0.5rem 0;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        margin: 0.5rem 0;
-      }
-
-      h2 {
-        font-size: 2.25rem;
-      }
-
-      h3 {
-        font-size: 1.75rem;
-      }
-
-      h4 {
-        font-size: 1.5rem;
-      }
-
-      .disc-list {
-        list-style-type: disc;
-        padding-left: 20px;
-        gap: 0.5rem;
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
-    <style is:global>
-      html {
-        scroll-behavior: smooth;
-        font-size: 100%;
-        color-scheme: light;
-      }
-
-      :root {
-        --background: hsl(210, 33%, 98%);
-        --text-color: hsl(0, 0%, 8%);
-        --gray-color: hsl(0, 0%, 20%);
-        --background-white: hsl(210, 33%, 98%);
-        --link-color: hsl(212, 100%, 40%);
-        --gray-color: hsl(0, 0%, 20%);
-        --black-color: hsl(210, 33%, 98%);
-        --line-color: hsl(0, 3%, 87%);
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --background: hsl(0, 0%, 8%);
-          --text-color: hsl(0, 0%, 98%);
-          --gray-color: hsl(0, 0%, 60%);
-          --background-white: hsl(0, 0%, 8%);
-          --link-color: hsl(212, 100%, 60%);
-          --gray-color: hsl(0, 0%, 60%);
-          --black-color: hsl(200, 13%, 5%);
-          --line-color: hsl(0, 0%, 25%);
-        }
-
-        html {
-          color-scheme: dark;
-        }
-      }
-
-      body {
-        color: var(--text-color);
-        background-color: var(--background-white);
-      }
-
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;

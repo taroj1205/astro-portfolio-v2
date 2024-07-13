@@ -2,135 +2,71 @@
 import { isString } from "@yamada-ui/utils"
 import { getTranslations } from "../../i18n/utils"
 import SchoolHistory from "./school-history.astro"
+import Accordion from "./accordion.astro"
 
 const { lang } = Astro.props
 
 const { heading, briefIntro } = getTranslations(lang)
 ---
 
-<div>
-	<h2>{heading.briefIntro.title}</h2>
-	<ul class="disc-list">
-		<li>{briefIntro.born}</li>
-		<li>{briefIntro.age}</li>
-		<li>{briefIntro["high school"]}</li>
-		<li>
-			{briefIntro.university}
-			<ul>
-				<li>{briefIntro["bachelor"]}</li>
-			</ul>
-		</li>
-		<li>
-			<details open>
-				<summary>
-					{briefIntro.drawer.schools.title}
-				</summary>
-				<div>
-					<p>{briefIntro.drawer.schools.description}</p>
-					<SchoolHistory lang={lang} />
-				</div>
-			</details>
-		</li>
-	</ul>
-	<h3>{heading.briefIntro.livedIn}</h3>
-	<ul class="disc-list">
-		<li>{briefIntro["lived in"].japan}</li>
-		<li>{briefIntro["lived in"].philippines}</li>
-		<li>{briefIntro["lived in"].newzealand}</li>
-	</ul>
-	<h3>{heading.briefIntro.hobbies}</h3>
-	<ul class="disc-list">
-		{
-			Object.entries(briefIntro.hobbies).map(([_, hobby]) => {
-				if (isString(hobby)) return <li>{hobby}</li>
+<div class="space-y-4">
+  <h2 class="text-4xl font-bold">{heading.briefIntro.title}</h2>
+  <ul class="list-inside list-disc space-y-2">
+    <li>{briefIntro.born}</li>
+    <li>{briefIntro.age}</li>
+    <li>{briefIntro["high school"]}</li>
+    <li>
+      {briefIntro.university}
+      <ul class="mt-2 list-inside list-[circle] pl-6">
+        <li>{briefIntro["bachelor"]}</li>
+      </ul>
+    </li>
+    <li>
+      <Accordion id="schools-accordion" label={briefIntro.drawer.schools.title}>
+        <p>{briefIntro.drawer.schools.description}</p>
+        <SchoolHistory lang={lang} />
+      </Accordion>
+    </li>
+  </ul>
+  <h3 class="text-3xl font-bold">{heading.briefIntro.livedIn}</h3>
+  <ul class="list-inside list-disc space-y-2">
+    <li>{briefIntro["lived in"].japan}</li>
+    <li>{briefIntro["lived in"].philippines}</li>
+    <li>{briefIntro["lived in"].newzealand}</li>
+  </ul>
+  <h3 class="text-3xl font-bold">{heading.briefIntro.hobbies}</h3>
+  <ul class="list-inside list-disc space-y-2">
+    {
+      Object.entries(briefIntro.hobbies).map(([_, hobby]) => {
+        if (isString(hobby)) return <li>{hobby}</li>
 
-				const title = hobby.title ?? hobby
-				if ("drawer" in hobby && hobby.drawer)
-					return (
-						<li>
-							<details>
-								<summary>{title}</summary>
-								<div>
-									{hobby.description ? <p>{hobby.description}</p> : null}
-									{hobby.video ? (
-										<iframe
-											width="315"
-											height="560"
-											loading="lazy"
-											src={hobby.video}
-											title={title}
-											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-											allowfullscreen
-										/>
-									) : null}
-								</div>
-							</details>
-						</li>
-					)
+        const title = hobby.title ?? hobby
+        if ("drawer" in hobby && hobby.drawer)
+          return (
+            <li>
+              <Accordion label={title} id={`${title}-accordion`} checked={true}>
+                {hobby.description ? <p>{hobby.description}</p> : null}
+                {hobby.video ? (
+                  <iframe
+                    width="315"
+                    height="560"
+                    loading="lazy"
+                    src={hobby.video}
+                    title={title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  />
+                ) : null}
+              </Accordion>
+            </li>
+          )
 
-				return <li>{title}</li>
-			})
-		}
-	</ul>
-	<h3>{heading.briefIntro.partTimeJob}</h3>
-	<ul class="disc-list">
-		<li>{briefIntro["part time job"].westlake}</li>
-	</ul>
+        return <li>{title}</li>
+      })
+    }
+  </ul>
+  <h3 class="text-3xl font-bold">{heading.briefIntro.partTimeJob}</h3>
+  <ul class="list-inside list-disc space-y-2">
+    <li>{briefIntro["part time job"].westlake}</li>
+  </ul>
 </div>
-
-<style>
-	details {
-		border: none;
-		padding: 0;
-		background-color: transparent;
-	}
-
-	details[open] iframe {
-		display: block;
-	}
-
-	summary {
-		cursor: pointer;
-		font-weight: normal;
-		margin: 0;
-		padding: 0;
-		background-color: transparent;
-		border-radius: 0;
-		list-style: none;
-		display: inline;
-		text-decoration: underline;
-		outline: none;
-	}
-
-	summary::-webkit-details-marker {
-		display: none;
-	}
-
-	summary:hover {
-		text-decoration: none;
-	}
-
-	details p {
-		padding: 10px 0;
-		margin: 0;
-	}
-
-	iframe {
-		display: none;
-		width: auto;
-		max-width: 100%;
-		height: 560px;
-		aspect-ratio: 9 / 16;
-		border-radius: 10px;
-		border-color: transparent;
-	}
-
-	.disc-list > li {
-		font-size: large;
-		line-height: 1.5;
-	}
-
-	ul:not(.disc-list) {
-		margin-bottom: 0;
-	}
-</style>

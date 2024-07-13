@@ -9,19 +9,50 @@ const {
 } = getTranslations(lang)
 ---
 
-<div class="vstack">
-  <h3>{languages}</h3>
-  <p>JavaScript, TypeScript, HTML, CSS, Markdown, Python</p>
+<div class="flex flex-col gap-2">
+  <h3 class="text-3xl font-bold">{languages}</h3>
+  <ul class="list-inside list-disc">
+    <li>JavaScript</li>
+    <li>TypeScript</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Markdown</li>
+    <li>Python</li>
+  </ul>
 
-  <h3>{framework}</h3>
-  <p>Next.js, Express, React.js, Node.js, Flask, Tailwind CSS</p>
+  <h3 class="text-3xl font-bold">{framework}</h3>
+  <ul class="list-inside list-disc">
+    <li>Next.js</li>
+    <li>Express</li>
+    <li>React.js</li>
+    <li>Node.js</li>
+    <li>Flask</li>
+    <li>Tailwind CSS</li>
+  </ul>
 
-  <h3>UI {library}</h3>
-  <p>Next UI, Chakra UI, Material UI, Joy UI, Yamada UI</p>
+  <h3 class="text-3xl font-bold">{library}</h3>
+  <ul class="list-inside list-disc">
+    <li>Next UI</li>
+    <li>Chakra UI</li>
+    <li>Material UI</li>
+    <li>Joy UI</li>
+    <li>Yamada UI</li>
+  </ul>
 
-  <h3>SQL</h3>
-  <p>MySQL, SQLite, PostgreSQL</p>
+  <h3 class="text-3xl font-bold">SQL</h3>
+  <ul class="list-inside list-disc">
+    <li>MySQL</li>
+    <li>SQLite</li>
+    <li>PostgreSQL</li>
+  </ul>
 
-  <h3>{thirdParty}</h3>
-  <p>Supabase, Vercel, Netlify, GitHub, Auth0, Clerk</p>
+  <h3 class="text-3xl font-bold">{thirdParty}</h3>
+  <ul class="list-inside list-disc">
+    <li>Supabase</li>
+    <li>Vercel</li>
+    <li>Netlify</li>
+    <li>GitHub</li>
+    <li>Auth0</li>
+    <li>Clerk</li>
+  </ul>
 </div>

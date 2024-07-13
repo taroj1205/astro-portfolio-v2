@@ -7,13 +7,13 @@ const { lang } = Astro.props
 const { heading } = getTranslations(lang)
 ---
 
-<div class="vstack">
-  <h2>{heading.programming.title}</h2>
-  <h3>{heading.programming.openSource.title}</h3>
-  <ul class="disc-list">
+<div class="flex flex-col gap-4">
+  <h2 class="text-4xl font-bold">{heading.programming.title}</h2>
+  <h3 class="text-3xl font-bold">{heading.programming.openSource.title}</h3>
+  <ul class="list-inside list-disc">
     <li>
       {heading.programming.openSource.yamada.title}
-      <ul>
+      <ul class="mt-2 list-inside list-[circle] pl-6">
         <li>
           <a
             href="https://yamada-ui.com/community/team"
@@ -29,13 +29,3 @@ const { heading } = getTranslations(lang)
   <Languages lang={lang} />
   <Projects lang={lang} />
 </div>
-
-<style>
-  a {
-    color: var(--link-color);
-  }
-
-  a:hover {
-    text-decoration: none;
-  }
-</style>

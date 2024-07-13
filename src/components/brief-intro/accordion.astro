@@ -1,0 +1,13 @@
+---
+const { id, label, checked = false } = Astro.props
+---
+
+<input type="checkbox" id={id} class="peer sr-only" checked={checked} />
+<label for={id} class="cursor-pointer underline hover:no-underline">
+  {label}
+</label>
+<div
+  class="mt-2 max-h-[100rem] space-y-2 overflow-clip transition-[max-height] duration-300 peer-checked:max-h-0"
+>
+  <slot />
+</div>

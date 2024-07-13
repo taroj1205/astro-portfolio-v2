@@ -1,61 +1,19 @@
 ---
+import { cn } from "utils/cn.astro"
 const { text, tooltip, float } = Astro.props
+
+const isRight = float === "right"
 ---
 
-<div class="tooltip" tabindex="0">
-	<p>{text}</p>
-	<span class={`tooltiptext ${float === "right" ? "float-right" : ""}`}
-		>{tooltip}</span
-	>
+<div
+  class="group relative inline-block cursor-pointer border-b-2 border-dotted border-black"
+  tabindex="0"
+>
+  <p>{text}</p>
+  <span
+    class={cn(
+      "rounded-md absolute text-center px-2 py-1 bottom-full left-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-1/2 min-w-32 max-w-60 bg-black invisible group-hover:visible",
+      { "float-right left-full translate-x-0": isRight },
+    )}>{tooltip}</span
+  >
 </div>
-
-<style is:global>
-	.tooltip {
-		position: relative;
-		display: inline-block;
-		cursor: pointer;
-		border-bottom: 1px dotted black;
-	}
-
-	.tooltip p {
-		margin: 0;
-		font-size: inherit;
-	}
-
-	.tooltip .tooltiptext {
-		visibility: hidden;
-		min-width: 120px;
-		max-width: 240px;
-		background-color: black;
-		color: #fff;
-		text-align: center;
-		border-radius: 6px;
-		padding: 5px 0;
-		white-space: nowrap;
-		word-wrap: break-word;
-
-		position: absolute;
-		z-index: 1;
-		bottom: 100%;
-		left: 50%;
-		transform: translateX(-50%);
-
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
-
-	.tooltip:hover .tooltiptext {
-		visibility: visible;
-		opacity: 1;
-		white-space: normal;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-	}
-
-	.tooltip .tooltiptext.float-right {
-		left: 100%;
-		margin-left: 10px;
-		transform: translate(0, 50%);
-		width: max-content;
-	}
-</style>

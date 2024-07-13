@@ -1,0 +1,23 @@
+---
+const { id } = Astro.props
+---
+
+<input id={id} class="peer sr-only" type="checkbox" name={id} />
+<label
+  class="m-2 flex h-10 w-10 cursor-pointer flex-col items-center justify-center rounded-full p-2"
+  for={id}
+  title="Open mobile menu"
+>
+  <div
+    class=`absolute z-50 h-[0.1rem] w-6 bg-gray-500 transition-transform duration-300 group-[&:not(:has(#${id}:checked))]:-translate-y-2 group-has-[#${id}:checked]:rotate-45`
+  >
+  </div>
+  <div
+    class=`absolute z-50 h-[0.1rem] w-6 bg-gray-500 transition-[transform,opacity] duration-300 group-has-[#${id}:checked]:translate-x-3 group-has-[#${id}:checked]:opacity-0`
+  >
+  </div>
+  <div
+    class=`absolute z-50 h-[0.1rem] w-6 bg-gray-500 transition-transform duration-300 group-[&:not(:has(#${id}:checked))]:translate-y-2 group-has-[#${id}:checked]:-rotate-45`
+  >
+  </div>
+</label>
