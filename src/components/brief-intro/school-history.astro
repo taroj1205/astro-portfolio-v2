@@ -1,43 +1,50 @@
 ---
-// Assuming the `getTranslations` function and `education` data structure are similar to the previous context
 import { getTranslations } from "../../i18n/utils"
 import Tooltip from "./detail-tooltip.astro"
-import { cn } from "utils/cn.astro"
 
 const { lang } = Astro.props
 const { education } = getTranslations(lang)
 ---
 
-<div class="w-[min(50rem,85vw,100%)] overflow-x-auto">
-  <table>
-    <thead class="bg-gray-200 dark:bg-gray-700">
+<div class="w-[min(50rem,90vw,100%)] overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <thead class="bg-blue-600 text-white dark:bg-blue-800">
       <tr>
-        <th class="rounded-tl-lg p-2">
+        <th
+          class="rounded-tl-lg px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
           {education.headings.period}
         </th>
-        <th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
           {education.headings.schoolName}
         </th>
-        <th class="rounded-tr-lg">
+        <th
+          class="rounded-tr-lg px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
           {education.headings.location}
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800"
+    >
       {
         education.schools.map((school, index) => (
           <tr
-            class={cn(
-              "text-[1rem]",
+            class:list={[
+              "text-[1rem] hover:bg-gray-100 dark:hover:bg-gray-700",
               index % 2 === 0
-                ? "bg-gray-100 dark:bg-gray-800"
-                : "bg-gray-200 dark:bg-gray-700",
-            )}
+                ? "bg-gray-50 dark:bg-gray-800"
+                : "bg-white dark:bg-gray-900",
+            ]}
           >
             <td
-              class={cn("text-nowrap px-2 py-1", {
+              class:list={{
+                "whitespace-nowrap px-6 py-2": true,
                 "rounded-bl-lg": index === education.schools.length - 1,
-              })}
+              }}
             >
               <Tooltip
                 text={school.duration}
@@ -45,13 +52,14 @@ const { education } = getTranslations(lang)
                 float="right"
               />
             </td>
-            <td class="text-nowrap px-2 py-1">
+            <td class="whitespace-nowrap px-6 py-2">
               <Tooltip text={school.name} tooltip={school.grade} />
             </td>
             <td
-              class={cn("text-nowrap px-2 py-1", {
+              class:list={{
+                "whitespace-nowrap px-6 py-2": true,
                 "rounded-br-lg": index === education.schools.length - 1,
-              })}
+              }}
             >
               <Tooltip
                 text={school.location.country}

@@ -2,7 +2,6 @@
 import { Image } from "astro:assets"
 import GithubIcon from "../../../icons/github.astro"
 import { generateSizesAndWidths } from "../../../utils/image"
-import { cn } from "utils/cn.astro"
 import ContentDivider from "components/divider/content-divider.astro"
 import "./card.css"
 
@@ -23,16 +22,17 @@ const langClasses = project.lang
 ---
 
 <div
-  class={cn(
-    "dark:bg-zinc-950 rounded-md text-sm overflow-clip outline outline-0 outline-zinc-200 dark:outline-zinc-800",
-    "break-inside-avoid invisible max-h-0 max-w-0 h-fit w-full flex flex-col transition-[max-height,max-width] duration-700",
+  class:list={[
+    "mb-4 flex overflow-clip rounded-md text-sm outline outline-0 outline-zinc-200 dark:bg-zinc-950 dark:outline-zinc-800",
+    "hide-delayed invisible h-fit max-h-0 w-full max-w-0 break-inside-avoid flex-col opacity-0 transition-[max-height,max-width,opacity,visibility] duration-700",
     'group-has-[input[value="all"]:checked]:visible',
     'group-has-[input[value="all"]:checked]:max-h-[40rem]',
     'group-has-[input[value="all"]:checked]:max-w-[40rem]',
     'group-has-[input[value="all"]:checked]:outline-1',
+    'group-has-[input[value="all"]:checked]:opacity-100',
     frameworkClasses,
     langClasses,
-  )}
+  ]}
 >
   <div>
     <Image

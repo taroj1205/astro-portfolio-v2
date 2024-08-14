@@ -27,26 +27,31 @@ const maxWidthRule = (tech: string) =>
 const outlineRule = (tech: string) =>
   `group-has-[input[value="${sanitizeTech(tech)}"]:checked]:outline-1`
 
-const rules = [outlineRule, maxHeightRule, maxWidthRule, visibilityRule]
+const opacityRule = (tech: string) =>
+  `group-has-[input[value="${sanitizeTech(tech)}"]:checked]:opacity-100`
+
+const rules = [
+  outlineRule,
+  maxHeightRule,
+  maxWidthRule,
+  visibilityRule,
+  opacityRule,
+]
 
 const cssRules = techs
   .map((tech) => {
     const sanitizedTech = sanitizeTech(tech)
-    return `.${sanitizedTech} { 
-      @apply ${rules.map((rule) => rule(tech)).join(" ")};
-    }`
+    return `.${sanitizedTech} { @apply ${rules.map((rule) => rule(tech)).join(" ")}; }`
   })
-  .join("\n")
+  .join("")
 
-// const tailwindTemplate = `@tailwind base;
-// ${cssRules}
-// `
+const minifiedCssRules = cssRules.replace(/\s+/g, " ").trim()
 
 const cssFilePath = path.join(
   process.cwd(),
   "./src/components/programming/projects/card.css",
 )
 
-fs.writeFileSync(cssFilePath, cssRules, "utf8")
+fs.writeFileSync(cssFilePath, minifiedCssRules, "utf8")
 
 console.log("CSS rules written to", cssFilePath)

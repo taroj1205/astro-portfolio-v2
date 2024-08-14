@@ -51,6 +51,7 @@ export default {
       animation: {
         hide: "hide 300ms ease-in-out forwards",
         show: "show 300ms ease-in-out forwards",
+        "delay-hide": "hide 1s forwards",
       },
       screens: {
         "reduce-motion": { raw: "(prefers-reduced-motion: reduce)" },

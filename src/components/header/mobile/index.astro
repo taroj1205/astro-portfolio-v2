@@ -7,9 +7,7 @@ const { lang } = Astro.props
 
 <form class="group place-self-start sm:hidden">
   <Hamburger />
-  <div
-    class="absolute top-0 group-[&:not(:has(#close-drawer:checked))]:invisible"
-  >
+  <div class="absolute top-0 group-[&:not(:has(#close-drawer:checked))]:hidden">
     <MobileContent lang={lang} />
   </div>
 </form>
