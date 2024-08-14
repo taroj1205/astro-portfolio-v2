@@ -7,6 +7,7 @@ const { lang } = Astro.props
 <a
   href={`/${lang === "ja" ? "en" : "ja"}`}
   title={lang === "ja" ? "To English" : "日本語へ"}
+  class="my-auto mr-2 flex h-10 w-10 items-center justify-center place-self-end rounded-full p-2 hover:bg-gray-100 sm:mr-8 sm:place-self-center dark:hover:bg-zinc-800"
 >
   {
     lang === "ja" ? (
@@ -16,30 +17,3 @@ const { lang } = Astro.props
     )
   }</a
 >
-
-<style>
-  a {
-    display: flex;
-    padding: 0.5rem;
-    transition: background-color 0.3s;
-    border-radius: 100%;
-    aspect-ratio: 1 / 1;
-    width: 1.5rem;
-    place-self: center;
-    margin-right: 2rem;
-  }
-
-  a:hover {
-    background-color: var(--button-hover-background);
-  }
-
-  a:focus {
-    outline: rgba(191, 219, 254, 0.5) solid 3px;
-  }
-
-  @container (max-width: 530px) {
-    a {
-      margin-right: 0.5rem;
-    }
-  }
-</style>

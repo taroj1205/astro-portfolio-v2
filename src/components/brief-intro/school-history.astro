@@ -1,5 +1,4 @@
 ---
-// Assuming the `getTranslations` function and `education` data structure are similar to the previous context
 import { getTranslations } from "../../i18n/utils"
 import Tooltip from "./detail-tooltip.astro"
 
@@ -7,123 +6,69 @@ const { lang } = Astro.props
 const { education } = getTranslations(lang)
 ---
 
-<div class="vstack">
-	<table class="education-table">
-		<thead>
-			<tr class="table-header">
-				<th class="table-header-cell table-header-cell--left">
-					{education.headings.period}
-				</th>
-				<th class="table-header-cell">
-					{education.headings.schoolName}
-				</th>
-				<th class="table-header-cell table-header-cell--right">
-					{education.headings.location}
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			{
-				education.schools.map((school, index) => (
-					<tr
-						class={`table-row ${index % 2 === 0 ? "table-row--even" : "table-row--odd"}`}>
-						<td
-							class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-left" : ""}`}>
-							<Tooltip
-								text={school.duration}
-								tooltip={`${school.start} - ${school.end}`}
-								float="right"
-							/>
-						</td>
-						<td class="table-cell">
-							<Tooltip text={school.name} tooltip={school.grade} />
-						</td>
-						<td
-							class={`table-cell ${index === education.schools.length - 1 ? "table-cell--bottom-right" : ""}`}>
-							<Tooltip
-								text={school.location.country}
-								tooltip={school.location.region}
-							/>
-						</td>
-					</tr>
-				))
-			}
-		</tbody>
-	</table>
+<div class="w-[min(50rem,90vw,100%)] overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <thead class="bg-blue-600 text-white dark:bg-blue-800">
+      <tr>
+        <th
+          class="rounded-tl-lg px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
+          {education.headings.period}
+        </th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
+          {education.headings.schoolName}
+        </th>
+        <th
+          class="rounded-tr-lg px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+        >
+          {education.headings.location}
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800"
+    >
+      {
+        education.schools.map((school, index) => (
+          <tr
+            class:list={[
+              "text-[1rem] hover:bg-gray-100 dark:hover:bg-gray-700",
+              index % 2 === 0
+                ? "bg-gray-50 dark:bg-gray-800"
+                : "bg-white dark:bg-gray-900",
+            ]}
+          >
+            <td
+              class:list={{
+                "whitespace-nowrap px-6 py-2": true,
+                "rounded-bl-lg": index === education.schools.length - 1,
+              }}
+            >
+              <Tooltip
+                text={school.duration}
+                tooltip={`${school.start} - ${school.end}`}
+                float="right"
+              />
+            </td>
+            <td class="whitespace-nowrap px-6 py-2">
+              <Tooltip text={school.name} tooltip={school.grade} />
+            </td>
+            <td
+              class:list={{
+                "whitespace-nowrap px-6 py-2": true,
+                "rounded-br-lg": index === education.schools.length - 1,
+              }}
+            >
+              <Tooltip
+                text={school.location.country}
+                tooltip={school.location.region}
+              />
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
 </div>
-
-<style>
-	.vstack {
-		overflow-x: auto;
-		width: min(50rem, 85vw, 100%);
-	}
-
-	.education-table {
-		table-layout: auto;
-		white-space: nowrap;
-		border-radius: 0.5rem;
-		border-collapse: collapse;
-		table-layout: fixed;
-	}
-
-	.table-header {
-		background-color: var(--table-head);
-		padding: 1rem;
-	}
-
-	.table-header-cell {
-		padding: 0.7rem 1rem;
-		font-size: 1rem;
-	}
-
-	.table-header-cell--left {
-		border-top-left-radius: 0.5rem;
-	}
-
-	.table-header-cell--right {
-		border-top-right-radius: 0.5rem;
-	}
-
-	.table-row--even {
-		background-color: var(--table-row-even-bg);
-	}
-
-	.table-row--odd {
-		background-color: var(--table-row-odd-bg);
-	}
-
-	.table-cell {
-		padding: 0.5rem 1rem;
-		vertical-align: middle;
-		font-size: 1rem;
-	}
-
-	.table-cell--bottom-left {
-		border-bottom-left-radius: 0.5rem;
-	}
-
-	.table-cell--bottom-right {
-		border-bottom-right-radius: 0.5rem;
-	}
-
-	:root {
-		--light-table-row-even-bg: hsl(210, 66%, 97%);
-		--dark-table-row-odd-bg: hsl(216, 25%, 20%);
-		--light-table-row-odd-bg: hsl(216, 33%, 94%);
-		--dark-table-row-even-bg: hsl(210, 30%, 15%);
-		--light-table-head: hsl(180, 100%, 75%);
-		--dark-table-head: hsl(180, 100%, 20%);
-
-		--table-row-even-bg: var(--light-table-row-even-bg);
-		--table-row-odd-bg: var(--light-table-row-odd-bg);
-		--table-head: var(--light-table-head);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--table-row-even-bg: var(--dark-table-row-even-bg);
-			--table-row-odd-bg: var(--dark-table-row-odd-bg);
-			--table-head: var(--dark-table-head);
-		}
-	}
-</style>

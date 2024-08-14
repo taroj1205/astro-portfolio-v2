@@ -7,87 +7,53 @@ import MailIcon from "../../icons/mail.astro"
 import XIcon from "../../icons/x.astro"
 ---
 
-<div class="top-me-social">
+<div class="flex flex-wrap items-center justify-center gap-1 pt-2">
   <a
     href="https://x.com/taroj1205"
     target="_blank"
-    class="social-icon x-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="X (Twitter)"
   >
-    <XIcon />
+    <XIcon class="h-full w-full" />
   </a>
   <a
     href="https://instagram.com/taroj1205"
     target="_blank"
-    class="social-icon instagram-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="Instagram"
   >
-    <InstagramIcon />
+    <InstagramIcon class="h-full w-full" />
   </a>
   <a
     href="https://facebook.com/taroj1205"
     target="_blank"
-    class="social-icon facebook-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="Facebook"
   >
-    <FacebookIcon />
+    <FacebookIcon class="h-full w-full" />
   </a>
   <a
     href="https://linkedin.com/in/taroj1205"
     target="_blank"
-    class="social-icon linkedin-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="LinkedIn"
   >
-    <LinkedInIcon />
+    <LinkedInIcon class="h-full w-full" />
   </a>
   <a
     href="https://github.com/taroj1205"
     target="_blank"
-    class="social-icon github-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="GitHub"
   >
-    <GitHubIcon />
+    <GitHubIcon class="h-full w-full" />
   </a>
   <a
     href="mailto:taroj1205@gmail.com"
     target="_blank"
-    class="social-icon mail-icon"
+    class="h-12 w-12 rounded-md p-2 text-gray-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-gray-300"
     title="Mail"
   >
-    <MailIcon />
+    <MailIcon class="h-full w-full" />
   </a>
 </div>
-
-<style>
-  .top-me-social {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 0.5rem;
-    gap: 0.25rem;
-  }
-
-  .social-icon {
-    font-size: 2rem;
-    border-radius: 15%;
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
-    color: var(--gray-color);
-  }
-  .social-icon:hover {
-    color: hsl(0, 0%, 83%);
-    background-color: hsl(0, 0%, 20%);
-  }
-</style>
-
-<style is:global>
-  .top-me-social svg {
-    width: 2rem;
-    height: 2rem;
-  }
-</style>

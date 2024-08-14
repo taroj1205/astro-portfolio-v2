@@ -48,24 +48,19 @@ const carouselItems = [
 ]
 ---
 
-<div id="carousel">
-  <form class="carousel-wrapper">
+<div class="flex justify-center">
+  <form
+    class="relative h-[30rem] max-h-[90vw] w-[30rem] max-w-[90vw] overflow-hidden"
+  >
     {
       carouselItems.map((item) => (
-        <CarouselItem {...item}>
-          <LeftArrow slot="prevArrow" />
-          <RightArrow slot="nextArrow" />
-        </CarouselItem>
+        <div>
+          <CarouselItem {...item}>
+            <LeftArrow slot="prevArrow" />
+            <RightArrow slot="nextArrow" />
+          </CarouselItem>
+        </div>
       ))
     }
   </form>
 </div>
-
-<style is:global>
-  #carousel {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-  }
-</style>

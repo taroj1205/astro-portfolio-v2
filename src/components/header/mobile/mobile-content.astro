@@ -1,16 +1,23 @@
 ---
 import type { Locales } from "../../../i18n/ui"
 import DropdownItem from "./../desktop/dropdown-item.astro"
-import { items, titles } from "./../desktop/items"
+import { items, titles } from "../desktop/items"
+import { cn } from "utils/cn.astro"
 const { lang } = Astro.props
 ---
 
-<div class="mobile-content">
+<div
+  class={cn(
+    "group-has-[#close-drawer:checked]:opacity-100 opacity-0 transition-opacity duration-300",
+    "bg-white dark:bg-black/95 h-svh w-screen flex flex-col gap-10 overflow-y-auto",
+    "px-5 py-12",
+  )}
+>
   {
     titles.map((title) => (
-      <section>
-        <h2>{title[lang as Locales]}</h2>
-        <div class="social-icons">
+      <section class="flex flex-col gap-2">
+        <h2 class="text-xl font-semibold">{title[lang as Locales]}</h2>
+        <div class="flex flex-wrap gap-2">
           {items[title.en.toLowerCase()].map((item) => (
             <DropdownItem lang={lang} items={item} />
           ))}
@@ -19,60 +26,3 @@ const { lang } = Astro.props
     ))
   }
 </div>
-
-<style>
-  :root {
-    --overlay-background-color: hsla(0, 0%, 100%, 0.9);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --overlay-background-color: hsla(0, 0%, 0%, 0.9);
-    }
-  }
-
-  .mobile-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    overflow-y: auto;
-    height: 100%;
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    background-color: var(--overlay-background-color);
-
-    width: calc(100% - 40px);
-    padding-inline: 20px;
-    padding-block: 3rem;
-  }
-
-  h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: var(--dark-text-color);
-    text-align: left;
-  }
-
-  .social-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .social-icons a svg {
-    width: 24px;
-
-    height: auto;
-  }
-</style>
-
-<style is:global>
-  .mobile-content a {
-    font-size: 1.125rem;
-    padding: 10px;
-    justify-content: center;
-    width: -webkit-fit-content;
-    width: fit-content;
-  }
-</style>

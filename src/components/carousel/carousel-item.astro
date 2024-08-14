@@ -8,132 +8,23 @@ const { id, item, imgSrc, alt, carousel, prevId, nextId, checked } = Astro.props
   type="radio"
   id={id}
   name="carousel"
-  class="carousel-radio"
+  class="peer sr-only"
   checked={checked}
 />
-<div class="carousel-item" id={item}>
+<div class="hidden peer-checked:grid" id={item}>
   <Image
     src={imgSrc}
     alt={alt}
     loading={carousel === 1 ? "eager" : "lazy"}
+    class="h-[30rem] max-h-[90vw] w-[30rem] max-w-[90vw] rounded-3xl object-cover object-center"
     {...generateSizesAndWidths(imgSrc.width, imgSrc.height, 480)}
   />
 </div>
-<label class={`arrow arrow-prev carousel-${carousel}`} for={prevId}
-  ><slot name="prevArrow" /></label
+<label
+  class={`absolute cursor-pointer bg-white dark:bg-black rounded-full w-10 h-10 p-[5px] top-1/2 left-2 hidden z-0 peer-checked:grid peer-checked:z-10`}
+  for={prevId}><slot name="prevArrow" /></label
 >
-<label class={`arrow arrow-next carousel-${carousel}`} for={nextId}
-  ><slot name="nextArrow" /></label
+<label
+  class={`absolute cursor-pointer bg-white dark:bg-black rounded-full w-10 h-10 p-[5px] top-1/2 right-2 hidden z-0 peer-checked:grid peer-checked:z-10`}
+  for={nextId}><slot name="nextArrow" /></label
 >
-
-<style is:global>
-  .carousel-radio {
-    display: none;
-  }
-
-  .carousel-wrapper {
-    position: relative;
-    height: 30rem;
-    width: 30rem;
-    max-width: 90vw;
-    max-height: 90vw;
-    overflow: hidden;
-  }
-
-  .carousel-item,
-  .carousel-item img {
-    width: 30rem;
-    max-width: 90vw;
-    max-height: 90vw;
-    height: 30rem;
-    overflow: hidden;
-  }
-
-  .carousel-item {
-    color: var(--text-white);
-    padding-bottom: 1rem;
-    position: absolute;
-    inset: 0;
-    visibility: hidden;
-    user-select: none;
-    display: none;
-  }
-
-  .arrow {
-    visibility: hidden;
-    place-items: center;
-    display: grid;
-  }
-
-  input[type="radio"].carousel-radio:checked
-    + .carousel-item
-    + label
-    + label
-    + input
-    + .carousel-item {
-    display: grid;
-  }
-
-  input[type="radio"].carousel-radio:checked + .carousel-item + label,
-  input[type="radio"].carousel-radio:checked + .carousel-item + label + label {
-    visibility: visible;
-    display: grid;
-  }
-
-  input[type="radio"].carousel-radio:checked + .carousel-item {
-    z-index: 2;
-    visibility: visible;
-    display: grid;
-  }
-
-  .carousel-item img {
-    aspect-ratio: 1 / 1;
-    border-radius: 4%;
-  }
-
-  .arrow {
-    position: absolute;
-    display: grid;
-    top: 45%;
-    width: 35px;
-    height: 35px;
-    padding: 5px;
-    -webkit-tap-highlight-color: transparent;
-    background-color: var(--background-white);
-    color: var(--text-color);
-    border-radius: 50%;
-    cursor: pointer;
-    place-items: center;
-    z-index: 3;
-    transition: background-color 0.3s;
-  }
-
-  .arrow:active {
-    background-color: var(--button-hover-background);
-  }
-
-  .arrow.arrow-prev {
-    left: 10px;
-  }
-
-  .arrow.arrow-next {
-    right: 10px;
-  }
-
-  @media (max-width: 480px) {
-    .arrow {
-      width: 2rem;
-      height: 2rem;
-    }
-
-    .arrow::after {
-      width: 2rem;
-      height: 2rem;
-    }
-
-    .carousel-item {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-</style>

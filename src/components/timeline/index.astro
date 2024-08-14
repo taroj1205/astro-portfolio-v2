@@ -2,8 +2,8 @@
 import { Image } from "astro:assets"
 import { marked } from "marked"
 import { generateSizesAndWidths } from "../../utils/image"
-import Container from "./container.astro"
 import { timelineJSON } from "./timeline"
+import Markdown from "./markdown.astro"
 
 const { lang } = Astro.props as { lang: "en" | "ja" }
 
@@ -12,223 +12,50 @@ timelineJSON.sort(
 )
 ---
 
-<h2>{lang === "ja" ? "僕の旅" : "My Journey"}</h2>
-<div class="timeline">
+<h2 class="mb-4 text-4xl font-bold">
+  {lang === "ja" ? "僕の旅" : "My Journey"}
+</h2>
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
   {
     timelineJSON.map((item, index) => (
-      <Container dir={index % 2 === 0 ? "left" : "right"}>
+      <li class="mb-10 ms-6">
+        <span class="absolute -start-3 mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-8 ring-white dark:bg-blue-900 dark:ring-zinc-900">
+          <svg
+            class="h-2.5 w-2.5 text-blue-800 dark:text-blue-300"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+          </svg>
+        </span>
+        <h3 class="mb-1 flex items-center text-lg font-semibold text-gray-900 dark:text-white">
+          {item.title[lang]}
+          {index === timelineJSON.length - 1 && (
+            <span class="me-2 ms-3 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+              Latest
+            </span>
+          )}
+        </h3>
         {item.timestamp && (
-          <time datetime={item.timestamp}>{item.timestamp}</time>
+          <time class="mb-2 block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+            {item.timestamp}
+          </time>
         )}
-        <h3>{item.title[lang]}</h3>
-        <p set:html={marked.parse(item.description[lang].trim())} />
+        {item.description && (
+          <Markdown set:html={marked(item.description[lang].trim())} />
+        )}
         {item.image && (
           <Image
             src={item.image}
             alt={item.title[lang]}
             loading="lazy"
             {...generateSizesAndWidths(item.image.width, item.image.height)}
+            class="mb-4 h-auto w-full max-w-xl rounded object-cover"
           />
         )}
-      </Container>
+      </li>
     ))
   }
-</div>
-
-<style is:global>
-  :root {
-    --darker-bg: hsl(210, 33%, 93%);
-    --label-bg: hsla(209, 95%, 58%, 0.9);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --darker-bg: hsl(0, 0%, 15%);
-      --label-bg: hsla(209, 100%, 31%, 0.9);
-    }
-  }
-
-  .timeline {
-    position: relative;
-    margin: 0 auto;
-    width: min(50rem, 90vw);
-    gap: 1rem;
-    display: grid;
-  }
-
-  .timeline h3 {
-    font-size: 1.5rem;
-  }
-
-  .timeline img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    object-fit: cover;
-    position: relative;
-    bottom: -0.2rem;
-  }
-
-  .timeline time {
-    position: absolute;
-    top: -0.7rem;
-    left: 0.5rem;
-    z-index: 1;
-    background-color: var(--label-bg);
-    padding-inline: 0.7rem;
-    padding-block: 0.25rem;
-    border-radius: 0.5rem;
-    color: white;
-  }
-
-  .timeline::after {
-    content: "";
-    position: absolute;
-    width: 6px;
-    background-color: var(--darker-bg);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-    z-index: -1;
-  }
-
-  .container {
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-  }
-
-  .container::before,
-  .container::after {
-    content: "";
-    position: absolute;
-  }
-
-  .container::before {
-    height: 0;
-    width: 0;
-    z-index: 1;
-    top: 1rem;
-    border: medium solid var(--darker-bg);
-  }
-
-  .container::after {
-    width: 17px;
-    height: 17px;
-    right: 0;
-    background-color: white;
-    border: 4px solid #ff9f55;
-    top: 0.9rem;
-    border-radius: 50%;
-  }
-
-  .left::after {
-    transform: translateX(calc(50% + 35px));
-  }
-
-  .right::after {
-    transform: translateX(15%);
-  }
-
-  .left {
-    left: 0;
-    transform: translateX(-35px);
-  }
-
-  .right {
-    left: 50%;
-    padding-left: 35px;
-  }
-
-  .left::before {
-    right: 0;
-    transform: translateX(10px);
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent var(--darker-bg);
-  }
-
-  .right::before {
-    left: 25px;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent var(--darker-bg) transparent transparent;
-  }
-
-  .right::after {
-    left: -16px;
-  }
-
-  .content {
-    padding: 20px 30px;
-    background-color: var(--darker-bg);
-    position: relative;
-    border-radius: 6px;
-  }
-
-  .content:has(img) {
-    padding-bottom: 0px;
-    padding-inline: 0;
-  }
-
-  .content:has(img) > p,
-  .content:has(img) > h3 {
-    padding-bottom: 0px;
-    padding-inline: 30px;
-  }
-
-  @container (max-width: 850px) {
-    .timeline {
-      gap: 1.5rem;
-    }
-
-    .timeline::after {
-      left: 0;
-    }
-
-    .container {
-      width: 100%;
-      padding-left: 0;
-    }
-
-    .left::before {
-      left: 25px;
-      border-width: 10px 10px 10px 0;
-      border-color: transparent var(--darker-bg) transparent transparent;
-      transform: translateX(0);
-    }
-
-    .left::after {
-      transform: translateX(15%);
-      left: -16px;
-    }
-
-    .right {
-      left: 0;
-    }
-
-    .left {
-      transform: translateX(0);
-    }
-
-    .content:has(img) > p,
-    .content:has(img) > h3,
-    .content:not(:has(img)) {
-      padding-inline: 20px;
-    }
-
-    .content {
-      left: 35px;
-      width: calc(100% - 70px);
-    }
-
-    .content:has(img) {
-      width: calc(100% - 30px);
-    }
-  }
-
-  @container (max-width: 400px) {
-    .content {
-      padding-block: 15px;
-    }
-  }
-</style>
+</ol>

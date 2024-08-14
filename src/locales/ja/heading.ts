@@ -12,7 +12,7 @@ export const heading = {
     projects: "プロジェクト",
     languages: "言語",
     framework: "フレームワーク",
-    library: "ライブラリ",
+    library: "UI ライブラリ",
     thirdParty: "サードパーティサービス",
   },
   briefIntro: {

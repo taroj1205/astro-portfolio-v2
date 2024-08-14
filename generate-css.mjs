@@ -12,40 +12,38 @@ const techs = [
   "sqlite3",
 ]
 
+const sanitizeTech = (tech) =>
+  tech.toLowerCase().replace(/\./g, "").replace(/#/g, "s")
+
+const visibilityRule = (tech) =>
+  `group-has-[input[value="${sanitizeTech(tech)}"]:checked]:visible`
+
+const maxHeightRule = (tech) =>
+  `group-has-[input[value="${sanitizeTech(tech)}"]:checked]:max-h-[40rem]`
+
+const outlineRule = (tech) =>
+  `group-has-[input[value="${sanitizeTech(tech)}"]:checked]:outline-1`
+
 const cssRules = techs
-  .map(
-    (tech) => `
-.projects-view-container:has(input[value="${tech}"]:checked)
-+ .projects-container
-.project-card.${tech} {
-  animation: card-in 0.5s ease-in-out forwards;
-  pointer-events: auto;
-}
-`,
-  )
-  .join("")
+  .map((tech) => {
+    const sanitizedTech = sanitizeTech(tech)
+    return `.${sanitizedTech} { 
+      @apply ${visibilityRule(tech)} ${maxHeightRule(tech)} ${outlineRule(tech)};
+    }`
+  })
+  .join("\n")
 
-const mediaPrefersReducedMotion = `@media (prefers-reduced-motion: reduce) {${techs
-  .map(
-    (tech) => `
-  .projects-view-container:has(input[value="${tech}"]:checked)
-+ .projects-container
-.project-card.${tech} {
-  animation: none;
-  display: flex;
-}`,
-  )
-  .join("")}}`
-
-const compressedCSS = (cssRules + mediaPrefersReducedMotion)
-  .replace(/\s+/g, " ")
-  .replace(/\s*([{}:;,+])\s*/g, "$1")
+const tailwindTemplate = `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+${cssRules}
+`
 
 const cssFilePath = path.join(
   process.cwd(),
   "./src/components/programming/projects/card.css",
 )
 
-fs.writeFileSync(cssFilePath, compressedCSS, "utf8")
+fs.writeFileSync(cssFilePath, tailwindTemplate, "utf8")
 
-console.log("Compressed CSS rules written to", cssFilePath)
+console.log("CSS rules written to", cssFilePath)

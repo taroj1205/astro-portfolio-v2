@@ -2,63 +2,30 @@
 const { lang } = Astro.props
 ---
 
-<h1 class="title">
+<h1 class="my-2 break-words text-center text-3xl md:text-4xl">
   {
     lang === "en" && (
-      <span class="greeting">
-        Hi👋 I'm <span class="name">Shintaro Jokagi.</span>
+      <span class="whitespace-normal">
+        Hi👋 I'm{" "}
+        <span class="mx-auto whitespace-nowrap text-3xl md:text-5xl">
+          Shintaro Jokagi.
+        </span>
       </span>
     )
   }
   {
     lang === "ja" && (
       <>
-        <span class="greeting-ja">こんにちは👋 </span>
-        <ruby class="name-ja">
+        <span class="whitespace-normal">こんにちは👋 </span>
+        <ruby class="whitespace-nowrap text-3xl md:text-5xl">
           上鍵<rp>(</rp>
           <rt>じょうかぎ</rt>
           <rp>)</rp>心太朗<rp>(</rp>
           <rt>しんたろう</rt>
           <rp>)</rp>
         </ruby>
-        <span class="suffix-ja">です。</span>
+        <span class="whitespace-nowrap">です。</span>
       </>
     )
   }
 </h1>
-
-<style>
-  .title {
-    text-align: center;
-    font-size: 2rem;
-    overflow-wrap: break-word;
-    margin: 0.5rem 0;
-  }
-
-  .greeting,
-  .greeting-ja {
-    text-wrap: balance;
-  }
-
-  .name {
-    text-wrap: nowrap;
-    font-size: 2.25rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (max-width: 300px) {
-    .name {
-      text-wrap: balance;
-    }
-  }
-
-  .name-ja {
-    font-size: 2.25rem;
-    text-wrap: nowrap;
-  }
-
-  .suffix-ja {
-    text-wrap: nowrap;
-  }
-</style>

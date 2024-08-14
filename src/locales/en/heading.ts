@@ -10,7 +10,7 @@ export const heading = {
     projects: "Projects",
     languages: "Languages",
     framework: "Framework",
-    library: "Libraries",
+    library: "UI Libraries",
     thirdParty: "Third-Party Services",
   },
   briefIntro: {

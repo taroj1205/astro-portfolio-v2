@@ -1,8 +1,10 @@
 import { defineConfig } from "astro/config"
 import sitemap from "@astrojs/sitemap"
 import playformCompress from "@playform/compress"
-
 import purgecss from "astro-purgecss"
+import tailwind from "@astrojs/tailwind"
+
+import compressor from "astro-compressor"
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,8 +20,10 @@ export default defineConfig({
         },
       },
     }),
+    tailwind(),
     purgecss(),
     playformCompress(),
+    compressor(),
   ],
   i18n: {
     defaultLocale: "en",
