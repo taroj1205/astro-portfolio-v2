@@ -128,8 +128,19 @@ export const education = {
         country: "New Zealand",
         region: "Auckland",
       },
-      name: "Westlake Boys High School (Expected graduation)",
+      name: "Westlake Boys High School",
       start: "08/2018",
+    },
+    {
+      duration: "3 years",
+      end: "11/2026",
+      grade: "University",
+      location: {
+        country: "New Zealand",
+        region: "Auckland",
+      },
+      name: "University of Auckland",
+      start: "03/2024",
     },
   ],
 }

@@ -52,6 +52,15 @@ export default {
         hide: "hide 300ms ease-in-out forwards",
         show: "show 300ms ease-in-out forwards",
       },
+      screens: {
+        "reduce-motion": { raw: "(prefers-reduced-motion: reduce)" },
+      },
+    },
+  },
+  variants: {
+    extend: {
+      transitionProperty: ["reduce-motion"],
+      animation: ["reduce-motion"],
     },
   },
   plugins: [require("@tailwindcss/typography")],

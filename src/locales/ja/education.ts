@@ -130,8 +130,19 @@ export const education = {
         country: "ニュージーランド",
         region: "オークランド",
       },
-      name: "Westlake Boys High School （卒業予定）",
+      name: "Westlake Boys High School",
       start: "2019年8月",
+    },
+    {
+      duration: "3年",
+      end: "2026年11月",
+      grade: "大学",
+      location: {
+        country: "ニュージーランド",
+        region: "オークランド",
+      },
+      name: "大学校 University of Auckland",
+      start: "2024年3月",
     },
   ],
 } as Translation["education"]

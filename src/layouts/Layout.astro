@@ -39,7 +39,7 @@ const url = Astro.site
     <title>{title}</title>
   </head>
   <body
-    class="m-0 flex min-h-svh flex-col items-center justify-between text-pretty break-words bg-white align-middle font-sans text-black has-[#close-drawer:checked]:overflow-hidden has-[#close-drawer:checked]:overscroll-contain dark:bg-zinc-900 dark:text-white"
+    class="reduce-motion:transition-none reduce-motion:animate-none m-0 flex min-h-svh flex-col items-center justify-between text-pretty break-words bg-white align-middle font-sans text-black has-[#close-drawer:checked]:overflow-hidden has-[#close-drawer:checked]:overscroll-contain dark:bg-zinc-900 dark:text-white"
   >
     <Header lang={lang} />
     <main
@@ -48,16 +48,5 @@ const url = Astro.site
       <slot />
     </main>
     <Footer lang={lang} />
-    <style is:global>
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        * {
-          transition: none !important;
-          animation: none !important;
-        }
-      }
-    </style>
   </body>
 </html>
