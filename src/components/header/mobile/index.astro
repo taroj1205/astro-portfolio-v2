@@ -1,12 +1,12 @@
 ---
 import MobileContent from "./mobile-content.astro"
-import Hamburger from "../../hamburger/three.astro"
+import Hamburger from "./hamburger.astro"
 
 const { lang } = Astro.props
 ---
 
 <form class="group place-self-start sm:hidden">
-  <Hamburger id="close-drawer" />
+  <Hamburger />
   <div
     class="absolute top-0 group-[&:not(:has(#close-drawer:checked))]:invisible"
   >
