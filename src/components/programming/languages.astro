@@ -4,7 +4,7 @@ import { getTranslations } from "../../i18n/utils"
 const { lang } = Astro.props
 const {
   heading: {
-    programming: { languages, framework, library, thirdParty },
+    programming: { languages, framework, library, saas },
   },
 } = getTranslations(lang)
 ---
@@ -22,6 +22,6 @@ const {
   <h3>SQL</h3>
   <p>MySQL, SQLite, PostgreSQL</p>
 
-  <h3>{thirdParty}</h3>
+  <h3>{saas}</h3>
   <p>Supabase, Vercel, Netlify, GitHub, Auth0, Clerk</p>
 </div>

@@ -13,7 +13,7 @@ export const heading = {
     languages: "言語",
     framework: "フレームワーク",
     library: "ライブラリ",
-    thirdParty: "サードパーティサービス",
+    saas: "SaaS",
   },
   briefIntro: {
     title: "自己紹介",

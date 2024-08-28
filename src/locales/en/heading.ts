@@ -11,7 +11,7 @@ export const heading = {
     languages: "Languages",
     framework: "Framework",
     library: "Libraries",
-    thirdParty: "Third-Party Services",
+    saas: "SaaS",
   },
   briefIntro: {
     title: "Brief Introduction",
